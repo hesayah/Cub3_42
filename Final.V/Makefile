@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/08 14:54:01 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/09 16:45:25 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,14 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/parsing/pars_brain.c \
 		srcs/parsing/pars_two.c \
 		srcs/parsing/pars_three.c \
+		srcs/parsing/pars_map.c \
+		srcs/parsing/pars_player.c \
+		srcs/sprite/sprite.c \
+		srcs/img/load_xpm.c \
+		srcs/move/move.c \
+		srcs/ray_casting/ray_casting.c \
 		srcs/drawing/drawing_one.c \
+		srcs/drawing/drawing_two.c \
 		
 LIBFT = libs/libft
 

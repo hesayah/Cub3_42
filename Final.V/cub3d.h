@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:25 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/08 15:03:15 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/09 16:58:32 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,63 @@
 #include "libs/mlx/mlx.h"
 #include "libs/libft/libft.h"
 #include "libs/gnl/get_next_line.h"
+
+typedef struct		s_cast
+{
+	int				mapx;
+	int				mapy;
+	double			ray_x;
+	double			ray_y;
+	double			d_ray_x;
+	double			d_ray_y;
+	int				stepx;
+	int				stepy;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			dist_ray;
+	double			wall;
+	int				start;
+	int				end;
+	int				side;
+	int				hit;
+	double			*buff;
+} 					t_cast;
+
+typedef	struct	s_sprite
+{
+	double		x;
+	double		y;
+	double		dist;
+}				t_sprite;
+
+
+typedef struct		s_srt
+{
+	int				hit;
+	double			sprite;
+	//int				txt_w;
+	//int				txt_h;
+//	double			step;
+//	double			tex_p;
+//	double			wallx;
+	double			sprite_x;
+	double			sprite_y;
+	double			m_inv;
+	double			tr_x;
+	double			tr_y;
+	int				srt_pos_x;
+	int				srt_h;
+	int				draw_sy;
+	int				draw_ey;
+	int				srt_w;
+	int				draw_sx;
+	int				draw_ex;
+	int				stripe;
+	int				srt_x;
+	int				srt_y;
+	int				pixel;
+	unsigned long	color;
+}					t_srt;
 
 typedef	struct		s_rgb
 {
@@ -71,7 +128,7 @@ typedef struct		s_tex
 	int 			endian;
 	int				img_width;
 	int				img_height;
-	/*void			*xpm;
+	void			*xpm;
 	void			*tex_no;
 	void			*tex_so;
 	void			*tex_ea;
@@ -80,12 +137,12 @@ typedef struct		s_tex
 	int				tex_y;
 	int				tex_x;
 	int				txt_w;
-	int				txt_h;*/
+	int				txt_h;
 	unsigned long	floor;
 	unsigned long	ceiling;
-	/*double			step;
+	double			step;
 	double			tex_p;
-	double			wallx;*/
+	double			wallx;
 }					t_tex;
 
 typedef struct  s_data
@@ -105,6 +162,9 @@ typedef struct  s_data
 	t_rgb			rgb;
 	t_map			map;
 	t_cam			cam;
+	t_srt			srt;
+	t_sprite		*sprite;
+	t_cast			cast;
 
     
 }               t_data;
@@ -120,7 +180,18 @@ int		get_res(char *str, t_data *data);
 int		scan_id(char *str, t_data *data);
 int		get_path_tex(int index, char *str, t_data *data);
 unsigned long ft_rgb(int r, int g, int b);
-int		ft_get_map(t_data *data, int index);
+int		ft_get_map(int index, t_data *data);
+void	init_map_and_cam(t_data *data);
+int		get_first_player_pos(t_data *data);
+int 	brain_sprite(t_data *data);
+int		load_xpm(t_data *data);
+int		action_key(int keycode, t_data *data);
+void	render_next_frame(t_data *data);
+void	ray_casting(t_data *data);
+void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
+void	draw_c_wall(int x, int *txt, double *buff, t_data *data);
+void	draw_sprite(int *srt, double *buff, t_data *data);
+void 	sprite(int *srt, double *buff, t_data *data);
 void    ft_debug(t_data *data);
 void    code_err(int code);
 int     exit_error(int code, t_data *data);

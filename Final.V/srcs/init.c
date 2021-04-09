@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:07:50 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/08 15:02:31 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/09 16:59:31 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_data(t_data *data)
 {
+	data->mlx = mlx_init();
 	data->w_h = -1;
 	data->w_w = -1;
 	data->tex.r_path[0] = NULL;
@@ -23,12 +24,13 @@ void	init_data(t_data *data)
 	data->tex.r_path[4] = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
+	data->map.m_x = 0;
+	data->map.m_y = 0;
+
 }
 
 void	init_map_and_cam(t_data *data)
 {
-   	data->map.m_x = 0;
-	data->map.m_y = 0;
 	data->map.r_map = 0.25;
 	data->map.map_w = (int)(data->w_w * data->map.r_map);
 	data->map.map_h = (int)(data->w_h * data->map.r_map);

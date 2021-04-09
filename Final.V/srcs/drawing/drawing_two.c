@@ -6,13 +6,13 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/07 15:20:39 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/09 16:58:38 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-/*void 			draw_player(t_data *data)
+static void 			draw_player(t_data *data)
 {
 	int x;
 	int y;
@@ -34,7 +34,7 @@
 	}
 }
 
-void            draw_map(t_data *data)
+static void            draw_map(t_data *data)
 {
 	int x;
 	int y;
@@ -100,9 +100,8 @@ void	draw_sprite(int *srt, double *buff, t_data *data)
 
 void		render_next_frame(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->win);
 	ray_casting(data);
 	draw_map(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-}*/
+}

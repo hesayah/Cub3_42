@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:58:15 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/08 15:01:00 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/09 16:46:54 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,9 @@ int pars_value_line(t_data *data)
 	{
 		if (c_in_str(data->tab[i][0], "RNSWEFC") == 1)
 		{
-			printf("ici bug == [%s]\n", data->tab[i]);
 			if (scan_id(data->tab[i], data) == 0)
 				return(exit_error(4, data));
 		}
-		
 		else if ((int)(data->tab[i][0]) != 0)
 		{
 			
@@ -115,6 +113,6 @@ int pars_value_line(t_data *data)
 	if (check_value(data) == 0)
 		return (0);
 	else
-		return(ft_get_map(data, i));
+		return(ft_get_map(i, data));
 	return (1);
 }
