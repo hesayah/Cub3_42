@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:25 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:58:32 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:20:59 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ typedef struct		s_tex
 
 typedef struct  s_data
 {
-    void 			*mlx;
+  	void 			*mlx;
 	void 			*win;
 	void 			*img;
 	char 			*addr;
@@ -186,9 +186,11 @@ int		get_first_player_pos(t_data *data);
 int 	brain_sprite(t_data *data);
 int		load_xpm(t_data *data);
 int		action_key(int keycode, t_data *data);
-void	render_next_frame(t_data *data);
+void	render_next_frame(t_data data);
 void	ray_casting(t_data *data);
-void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
+void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_map(t_data data);
+void	draw_player(t_data data);
 void	draw_c_wall(int x, int *txt, double *buff, t_data *data);
 void	draw_sprite(int *srt, double *buff, t_data *data);
 void 	sprite(int *srt, double *buff, t_data *data);

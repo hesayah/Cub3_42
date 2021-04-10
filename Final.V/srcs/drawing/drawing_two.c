@@ -6,13 +6,13 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:58:38 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:22:53 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void 			draw_player(t_data *data)
+/*static void 			draw_player(t_data *data)
 {
 	int x;
 	int y;
@@ -72,8 +72,9 @@ static void            draw_map(t_data *data)
 	}
 }
 
+*/
 
-void	draw_sprite(int *srt, double *buff, t_data *data)
+/*void	draw_sprite(int *srt, double *buff, t_data *data)
 {
 	int y;
 
@@ -96,12 +97,70 @@ void	draw_sprite(int *srt, double *buff, t_data *data)
 		}
 		data->srt.stripe++;
 	}
+}*/
+
+void 			draw_player(t_data data)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < data.map.map_h)
+	{
+		x = 0;
+		while(x < data.map.map_w)
+		{
+			if((y >= (data.cam.posy * data.map.map_y) - (data.map.map_y / 5) && y <= ((data.cam.posy * data.map.map_y) + (data.map.map_y / 5))) &&
+				(x >= (data.cam.posx * data.map.map_x) - (data.map.map_x / 5) && x <= ((data.cam.posx * data.map.map_x) + (data.map.map_x / 5))))
+				my_mlx_pixel_put(&data, x, y, 0x696969);
+			x++;
+		}
+		y++;
+	}
 }
 
-void		render_next_frame(t_data *data)
+void            draw_map(t_data data)
 {
-	ray_casting(data);
+	int x;
+	int y;
+	int px;
+	int py;
+
+	y = 1;
+	px = py = 0;
+	int i = 0;
+	while (py < data.map.m_y)
+	{
+		x = 1;
+		while (px < data.map.m_x && x < data.map.map_w)
+		{
+			if (x % (int)data.map.map_x == 0)
+			{
+				px++;
+				x++;
+			}
+			if (data.maps[py][px] && data.maps[py][px] == '1')
+				my_mlx_pixel_put(&data, x, y, 0x2F4F4F);
+			else if (data.maps[py][px] == '2')
+				my_mlx_pixel_put(&data, x, y, 0xD3D3D3);
+			else if (data.maps[py][px] == '0' || data.maps[py][px] == 'N')
+				my_mlx_pixel_put(&data, x, y, 0x99D8D89);
+			x++;
+		}
+		y++;
+		px = 0;
+		if ((y % (int)data.map.map_y) == 0)
+		{
+			py++;
+			y++;
+		}
+	}
+}
+
+void		render_next_frame(t_data data)
+{
+	//ray_casting(data);
 	draw_map(data);
 	draw_player(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_put_image_to_window(data.mlx, data.win, data.tex.tex_no, 0, 0);
 }

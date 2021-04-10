@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:36:31 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 17:01:00 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:23:39 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void			ray_casting(t_data *data)
 	{
 		init_casting(x, data);
 		engine_casting(x, data);
-		if (data->cast.side == 0)
+	/*	if (data->cast.side == 0)
 		{
 			if (data->cast.mapx - data->cam.posx > 0)
 				draw_c_wall(x, data->tex.tex_ea, buff, data);
@@ -124,7 +124,7 @@ void			ray_casting(t_data *data)
 				draw_c_wall(x, data->tex.tex_so, buff, data);
 			else
 				draw_c_wall(x, data->tex.tex_no, buff, data);
-		}
+		}*/
 		buff[x] = data->cast.dist_ray;
 	}
 	buff[x] = '\0';

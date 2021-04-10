@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:31:57 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:47:09 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:23:52 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void sprite(int *srt, double *buff, t_data *data)
 		data->srt.draw_ex = (data->srt.srt_w / 2) + data->srt.srt_pos_x;
 		if (data->srt.draw_ex >= data->w_w )
 			data->srt.draw_ex = data->w_w - 1;
-		draw_sprite(srt, buff, data);
+		//draw_sprite(srt, buff, data);
 		i++;
 	}
 }

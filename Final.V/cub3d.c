@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:59:09 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/10 15:15:43 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int			close_window(t_data *data)
 	return (0);
 }
 
-/*int		loop_hook(t_data *data)
+int		loop_hook(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, action_key, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
-	render_next_frame(data);
+	render_next_frame(*data);
 	return (0);
-}*/
+}
 
 static int		ft_check_ext(char *str)
 {
@@ -95,7 +95,6 @@ int	brain(int argc, char **argv, t_data *data)
 	ft_putstr_fd("HAVE FUN ;) !\n", 0);	
 	/*if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
 		return(2);*/
-    ft_debug(data);
 	return (1);
 }
 
@@ -104,7 +103,6 @@ int				main(int argc, char **argv)
 {
 	t_data data;
 
-	data.mlx = mlx_init();
 	if (argc > 1 && ft_check_ext(argv[1]) == 1)
 	{
 		if (brain(argc, argv, &data) == 1)
@@ -115,8 +113,15 @@ int				main(int argc, char **argv)
 			data.addr = mlx_get_data_addr(data.img,
 			&data.bits_per_pixel, &data.line_length, &data.endian);
 			//mlx_loop_hook(data.mlx, loop_hook, &data);
-			mlx_hook(data.win, 2, 1L << 0, action_key, &data);
+			//render_next_frame(data);
+			//mlx_hook(data.win, 2, 1L << 0, action_key, &data);
 			mlx_hook(data.win, 17, 0, close_window, &data);
+			//loop_hook(&data);
+			//draw_map(data);
+			//draw_player(data);
+			
+			my_mlx_pixel_put(&data, 500,500, 0x696969);
+			mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 			mlx_loop(data.mlx);
 		}
 		/*else if (brain(argc, argv, data) == 2)

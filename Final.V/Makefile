@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/09 16:45:25 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/10 15:19:18 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		
 LIBFT = libs/libft
 
-LIB = libs/libft/libft.a
+LIB = libs/libft/libft.a libs/mlx/libmlx.a
 
 OBJ = $(SRCS:.c=.o)
 
@@ -59,7 +59,6 @@ clean:
 	
 fclean: clean
 	rm -rf libs/libft/*.o
-	rm -rf libs/mlx/*.o
 	rm -rf $(NAME)
 
 re: fclean all
