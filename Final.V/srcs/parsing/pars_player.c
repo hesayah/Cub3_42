@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:26:03 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:46:34 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/11 12:59:54 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static	void	define_vector_bis(double plane_x, double plane_y, t_data *data)
 
 static	void	define_vector(t_data *data)
 {
-	if (data->cam.dir_eye == M_PI)
-		define_vector_bis(0, 0.66, data);
-	else if(data->cam.dir_eye == 0)
-		define_vector_bis(0.66, 0, data);
-	else if (data->cam.dir_eye == M_PI / 2)
-		define_vector_bis(0, -0.66, data);
-	else 
+	if (data->cam.dir_eye == M_PI /2)
 		define_vector_bis(-0.66, 0, data);
+	else if(data->cam.dir_eye == -M_PI /2)
+		define_vector_bis(0.66, 0, data);
+	else if (data->cam.dir_eye == 0)
+		define_vector_bis(0, 0.66, data);
+	else  if (data->cam.dir_eye == M_PI)
+		define_vector_bis(0, -0.66, data);
 	data->cam.dir_x = cos(data->cam.dir_eye);
 	data->cam.dir_y = sin(data->cam.dir_eye);
 }
@@ -42,7 +42,7 @@ static	void	get_first_player_pos_two(int y, int x, t_data *data)
 		if (data->maps[y][x] == 'S')
 			data->cam.dir_eye = M_PI / 2;
 		else if (data->maps[y][x] == 'N')
-			data->cam.dir_eye = (3 * M_PI) / 2;
+			data->cam.dir_eye = (-M_PI / 2);
 		else if (data->maps[y][x] == 'E')
 			data->cam.dir_eye = 0;
 		else if (data->maps[y][x] == 'W')

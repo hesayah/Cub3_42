@@ -6,13 +6,13 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:20 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/10 14:22:30 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/11 15:00:40 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void            my_mlx_pixel_put(int x, int y, int color, t_data *data)
 {
 	char    *dst;
 
@@ -27,7 +27,7 @@ unsigned long ft_rgb(int r, int g, int b)
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-/*static	void	texture_calc(int x, t_data *data)
+static	void	texture_calc(int x, t_data *data)
 {	
 	if (data->cast.side == 0)
 		data->tex.wallx = data->cam.posy + data->cast.dist_ray
@@ -46,7 +46,7 @@ unsigned long ft_rgb(int r, int g, int b)
 	+ data->cast.wall / 2) * data->tex.step;
 }
 
-void	        draw_c_wall(int x, int *txt, double *buff, t_data *data)
+void	        draw_c_wall(int x, int *txt, t_data *data)
 {
 	int y;
 	y = 0;
@@ -65,6 +65,4 @@ void	        draw_c_wall(int x, int *txt, double *buff, t_data *data)
 			my_mlx_pixel_put(x, y, data->tex.floor, data);
 		y++; 
 	}
-	if (data->srt.hit == 1)
-		sprite(data->tex.tex_s, buff, data);
-}*/
+}

@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/10 15:19:18 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/11 17:24:48 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3  -g3 -fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
 
@@ -59,6 +59,7 @@ clean:
 	
 fclean: clean
 	rm -rf libs/libft/*.o
+	rm -rf libs/mlx/*.o
 	rm -rf $(NAME)
 
 re: fclean all

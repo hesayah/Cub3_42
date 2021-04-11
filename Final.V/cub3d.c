@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/10 15:15:43 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/11 13:48:19 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void    ft_debug(t_data *data)
 		i++;
 	}
 	printf("\n ----------- \n");
+	printf("dir_eye == [%f]\n", data->cam.dir_eye);
+	printf("dir_x == [%f] && dir_y == [%f]\n", data->cam.dir_x, data->cam.dir_y);
+	printf("plane_x == [%f] && plane_y == [%f]\n", data->cam.plane_x, data->cam.plane_y);
 }
 
 int			close_window(t_data *data)
@@ -50,9 +53,9 @@ int			close_window(t_data *data)
 
 int		loop_hook(t_data *data)
 {
-	mlx_hook(data->win, 2, 1L << 0, action_key, data);
+	
+	mlx_hook(data->win, 2, 1L << 0, render_next_frame, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
-	render_next_frame(*data);
 	return (0);
 }
 
@@ -107,21 +110,11 @@ int				main(int argc, char **argv)
 	{
 		if (brain(argc, argv, &data) == 1)
 		{
-			data.win = mlx_new_window(&data.mlx,
-			data.w_w, data.w_h, "HeSayah Cub3D");
+			data.win = mlx_new_window(data.mlx, data.w_w, data.w_h, "HeSayah Cub3D");
 			data.img = mlx_new_image(data.mlx, data.w_w, data.w_h);
-			data.addr = mlx_get_data_addr(data.img,
-			&data.bits_per_pixel, &data.line_length, &data.endian);
-			//mlx_loop_hook(data.mlx, loop_hook, &data);
-			//render_next_frame(data);
-			//mlx_hook(data.win, 2, 1L << 0, action_key, &data);
-			mlx_hook(data.win, 17, 0, close_window, &data);
-			//loop_hook(&data);
-			//draw_map(data);
-			//draw_player(data);
-			
-			my_mlx_pixel_put(&data, 500,500, 0x696969);
-			mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+			data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+			render_next_frame(0, &data);
+			loop_hook(&data);
 			mlx_loop(data.mlx);
 		}
 		/*else if (brain(argc, argv, data) == 2)

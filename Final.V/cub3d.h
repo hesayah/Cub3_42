@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:25 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/10 14:20:59 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:53:44 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ typedef struct		s_srt
 {
 	int				hit;
 	double			sprite;
-	//int				txt_w;
-	//int				txt_h;
-//	double			step;
-//	double			tex_p;
-//	double			wallx;
 	double			sprite_x;
 	double			sprite_y;
 	double			m_inv;
@@ -129,11 +124,7 @@ typedef struct		s_tex
 	int				img_width;
 	int				img_height;
 	void			*xpm;
-	void			*tex_no;
-	void			*tex_so;
-	void			*tex_ea;
-	void			*tex_we;
-	void			*tex_s;
+	void			*tex[5];
 	int				tex_y;
 	int				tex_x;
 	int				txt_w;
@@ -186,14 +177,13 @@ int		get_first_player_pos(t_data *data);
 int 	brain_sprite(t_data *data);
 int		load_xpm(t_data *data);
 int		action_key(int keycode, t_data *data);
-void	render_next_frame(t_data data);
+int		render_next_frame(int keycode, t_data *data);
 void	ray_casting(t_data *data);
-void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	draw_map(t_data data);
-void	draw_player(t_data data);
-void	draw_c_wall(int x, int *txt, double *buff, t_data *data);
-void	draw_sprite(int *srt, double *buff, t_data *data);
-void 	sprite(int *srt, double *buff, t_data *data);
+void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
+void	draw_c_wall(int x, int *txt, t_data *data);
+void 	sprite(int *srt, t_data *data);
+void	init_sprite(t_data *data);
+void	draw_sprite(int *srt, t_data *data);
 void    ft_debug(t_data *data);
 void    code_err(int code);
 int     exit_error(int code, t_data *data);

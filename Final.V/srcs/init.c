@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:07:50 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/10 13:55:44 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:35:15 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	init_data(t_data *data)
 	data->tex.r_path[2] = NULL;
 	data->tex.r_path[3] = NULL;
 	data->tex.r_path[4] = NULL;
+	data->tex.tex[0] = NULL;
+	data->tex.tex[1] = NULL;
+	data->tex.tex[2] = NULL;
+	data->tex.tex[3] = NULL;
+	data->tex.tex[4] = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
 	data->map.m_x = 0;
@@ -38,4 +43,25 @@ void	init_map_and_cam(t_data *data)
 	data->map.map_y = (int)(data->map.map_h) / (data->map.m_y);
 	data->cam.speed = 0.15;
 	data->cam.rot_speed = 0.1;
+}
+
+void	init_sprite(t_data *data)
+{
+	data->srt.m_inv = 0;
+	data->srt.tr_x = 0;
+	data->srt.tr_y = 0;
+	data->srt.srt_pos_x = 0;
+	data->srt.srt_h = 0;
+	data->srt.draw_sy = 0;
+	data->srt.draw_ey = 0;
+	data->srt.srt_w = 0;
+	data->srt.draw_sx = 0;
+	data->srt.draw_ex = 0;
+	data->srt.stripe = 0;
+	data->srt.srt_x = 0;
+	data->srt.draw_sy = 0;
+	data->srt.draw_ey = 0;
+	data->srt.pixel = 0;
+    data->srt.srt_y  = 0;
+    data->srt.color = 0;
 }
