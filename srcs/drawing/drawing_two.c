@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 17:37:39 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/12 18:21:49 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_sprite(int *srt, t_data *data)
 	while (data->srt.stripe < data->srt.draw_ex)
 	{
 		data->srt.srt_x = (int)(256 * (data->srt.stripe - (-data->srt.srt_w / 2 + data->srt.srt_pos_x)) * 528 / data->srt.srt_w) / 256;
-		if (data->srt.tr_y > 0 && data->srt.stripe > 0 && data->srt.stripe < data->w_w && data->srt.tr_y < data->cast.buff[data->srt.stripe])
+		if (data->srt.tr_y > 0 && data->srt.stripe > 0 && data->srt.stripe < data->w_w && data->srt.tr_y ) //< data->cast.buff[data->srt.stripe])
 		{
 			y = data->srt.draw_sy;
 			while  (y < data->srt.draw_ey)
@@ -102,6 +102,7 @@ void	draw_sprite(int *srt, t_data *data)
 int		render_next_frame(int keycode, t_data *data)
 {
 	action_key(keycode, data);
+	mlx_clear_window(data->mlx, data->win);
 	ray_casting(data);
 	if (data->srt.hit == 1)
 		sprite(data->tex.tex[4],  data);

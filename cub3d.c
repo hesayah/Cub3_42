@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 13:48:19 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/12 14:28:13 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			close_window(t_data *data)
 
 int		loop_hook(t_data *data)
 {
-	
 	mlx_hook(data->win, 2, 1L << 0, render_next_frame, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
 	return (0);

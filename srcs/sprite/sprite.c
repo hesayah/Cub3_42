@@ -6,40 +6,34 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:31:57 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 18:30:12 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/12 18:20:51 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static	void	sort_srt(int code, int *ord, t_data *data)
+static	void	sort_srt(t_data *data)
 {
 	int i;
-	int tmp;
+	t_sprite tmp;
 
 	i = 0;
-	if (code == 0)
+	while (i < data->map.n_srt)
 	{
-		while (i < data->map.n_srt)
-		{
-			data->sprite[i].dist = 0;
-			i++;
-		}
-
+		data->sprite[i].dist = (pow(data->cam.posy - data->sprite[i].y, 2) + pow(data->cam.posx - data->sprite[i].x, 2));
+		i++;
 	}
-	else
-	{
+	i = 0;
 	while (i < data->map.n_srt - 1)
 	{
-		if (data->sprite[i].dist > data->sprite[i + 1].dist)
+		if (data->sprite[i].dist < data->sprite[i + 1].dist)
 		{
-			tmp = ord[i + 1];
-			ord[i + 1] = tmp;
-			ord[i] = tmp;
+			tmp = data->sprite[i + 1];
+			data->sprite[i + 1] = data->sprite[i];
+			data->sprite[i] = tmp;
 			i = 0;
 		}
 		i++;
-	}
 	}
 }
 
@@ -47,22 +41,14 @@ void sprite(int *srt, t_data *data)
 {
 	int i;
 	int	y;
-	int srt_ord[data->map.n_srt];
 	
 	i = 0;
-	while (i < data->map.n_srt)
-	{
-		srt_ord[i] = i;
-		data->sprite[i].dist = (pow(data->cam.posy - data->sprite[i].x, 2) + pow(data->cam.posx - data->sprite[i].y, 2));
-		i++;
-	}
-	i = 0;
-	sort_srt(1, srt_ord, data);
+	sort_srt(data);
 	while(i < data->map.n_srt)
 	{
-		init_sprite(data);
-		data->srt.sprite_x = data->sprite[srt_ord[i]].x  - data->cam.posx;
-		data->srt.sprite_y = data->sprite[srt_ord[i]].y  - data->cam.posy;
+		data->srt.sprite_x = data->sprite[i].x  - data->cam.posx;
+		data->srt.sprite_y = data->sprite[i].y  - data->cam.posy;
+		printf("APRES [%f] && i == [%i]\n", data->sprite[i].dist, i);
 		data->srt.m_inv = 1.0 / (data->cam.plane_x * data->cam.dir_y - data->cam.dir_x  * data->cam.plane_y);
 		data->srt.tr_x = data->srt.m_inv * (data->cam.dir_y * data->srt.sprite_x  - data->cam.dir_x * data->srt.sprite_y);
 		data->srt.tr_y = data->srt.m_inv * (-data->cam.plane_y * data->srt.sprite_x  + data->cam.plane_x * data->srt.sprite_y);
@@ -85,7 +71,6 @@ void sprite(int *srt, t_data *data)
 		draw_sprite(srt,  data);
 		i++;
 	}
-	//sort_srt(1, srt_ord, data);
 }
 
 int brain_sprite(t_data *data)
@@ -113,5 +98,6 @@ int brain_sprite(t_data *data)
 		}
 		y++;
 	}
+	init_sprite(data);
     return (0);
 }
