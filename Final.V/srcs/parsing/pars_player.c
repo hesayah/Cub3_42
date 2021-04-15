@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:26:03 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 12:59:54 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/14 14:50:09 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int		get_first_player_pos(t_data *data)
 			return (0);
 		}
     if (data->map.n_srt > 0)
-		brain_sprite(data);
+		init_sprite(data);
 	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/12 18:21:49 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/15 16:47:52 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void 			draw_player(t_data *data)
+void 			draw_player(t_data *data)
 {
 	int x;
 	int y;
@@ -34,7 +34,7 @@ static void 			draw_player(t_data *data)
 	}
 }
 
-static void            draw_map(t_data *data)
+void            draw_map(t_data *data)
 {
 	int x;
 	int y;
@@ -72,40 +72,43 @@ static void            draw_map(t_data *data)
 	}
 }
 
-void	draw_sprite(int *srt, t_data *data)
+void	draw_sprite(int *srt, double *buff, t_data *data)
 {
 	int y;
+	int x;
 
 	y = 0;
-	data->srt.stripe = data->srt.draw_sx;
-	while (data->srt.stripe < data->srt.draw_ex)
+	x = data->srt.draw_sx;
+	while (x < data->srt.draw_ex)
 	{
-		data->srt.srt_x = (int)(256 * (data->srt.stripe - (-data->srt.srt_w / 2 + data->srt.srt_pos_x)) * 528 / data->srt.srt_w) / 256;
-		if (data->srt.tr_y > 0 && data->srt.stripe > 0 && data->srt.stripe < data->w_w && data->srt.tr_y ) //< data->cast.buff[data->srt.stripe])
+		data->srt.srt_x = (int)(256 * (x - (-data->srt.srt_w / 2 + data->srt.srt_pos_x)) * 528 / data->srt.srt_w) / 256;
+		if (data->srt.tr_y > 0 && x > 0 && x < data->w_w && data->srt.tr_y < buff[x])
 		{
-			y = data->srt.draw_sy;
+			y = data->srt.draw_sy + 2;
 			while  (y < data->srt.draw_ey)
 			{
 				data->srt.pixel = (y) * 256 - data->w_h * 128 + data->srt.srt_h * 128;
         		data->srt.srt_y  = ((data->srt.pixel * 797) / data->srt.srt_h) / 256;
         		data->srt.color = srt[528* data->srt.srt_y + data->srt.srt_x];
            		if ((data->srt.color  & 0x00FFFFFF) != 0)
-			   		my_mlx_pixel_put(data->srt.stripe, y,  data->srt.color, data);
+			   		my_mlx_pixel_put(x, y,  data->srt.color, data);
 				y++;
 			}
 		}
-		data->srt.stripe++;
+		x++;
 	}
 }
 
 
 int		render_next_frame(int keycode, t_data *data)
 {
+	double buff[data->w_w];
+
 	action_key(keycode, data);
 	mlx_clear_window(data->mlx, data->win);
-	ray_casting(data);
+	ray_casting(buff, data);
 	if (data->srt.hit == 1)
-		sprite(data->tex.tex[4],  data);
+		brain_sprite(data->tex.tex[4], buff,  data);
 	draw_map(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

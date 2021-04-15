@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:36:31 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 17:35:25 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/14 14:46:00 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,9 @@ static	void	play_casting(t_data *data)
 	}
 }
 
-void            ray_casting(t_data *data)
+void            ray_casting(double *buff, t_data *data)
 {
 	int x;
-	double buff[data->w_w];
 
 	x = 0;
 	data->srt.hit = 0;
@@ -94,6 +93,7 @@ void            ray_casting(t_data *data)
 			data->cast.dist_ray = (data->cast.mapx - data->cam.posx + (1 - data->cast.stepx) /2 ) / data->cast.ray_x;
 		else
 			data->cast.dist_ray = (data->cast.mapy - data->cam.posy + (1 - data->cast.stepy) / 2 )/ data->cast.ray_y;
+		buff[x] = data->cast.dist_ray;
 		data->cast.wall = data->w_h / data->cast.dist_ray;
 		data->cast.start =(-data->cast.wall / 2  + data->w_h / 2); 
 		if (data->cast.start < 0) 
@@ -115,8 +115,6 @@ void            ray_casting(t_data *data)
 			else
 				draw_c_wall(x , data->tex.tex[0], data);
 		}
-		buff[x] = data->cast.dist_ray;
 		x++;
 	}
-	data->cast.buff = buff;
 }

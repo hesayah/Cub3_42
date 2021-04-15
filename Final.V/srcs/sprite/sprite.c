@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:31:57 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/12 18:20:51 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/14 14:49:29 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	void	sort_srt(t_data *data)
 	}
 }
 
-void sprite(int *srt, t_data *data)
+void	brain_sprite(int *srt, double *buff, t_data *data)
 {
 	int i;
 	int	y;
@@ -48,7 +48,6 @@ void sprite(int *srt, t_data *data)
 	{
 		data->srt.sprite_x = data->sprite[i].x  - data->cam.posx;
 		data->srt.sprite_y = data->sprite[i].y  - data->cam.posy;
-		printf("APRES [%f] && i == [%i]\n", data->sprite[i].dist, i);
 		data->srt.m_inv = 1.0 / (data->cam.plane_x * data->cam.dir_y - data->cam.dir_x  * data->cam.plane_y);
 		data->srt.tr_x = data->srt.m_inv * (data->cam.dir_y * data->srt.sprite_x  - data->cam.dir_x * data->srt.sprite_y);
 		data->srt.tr_y = data->srt.m_inv * (-data->cam.plane_y * data->srt.sprite_x  + data->cam.plane_x * data->srt.sprite_y);
@@ -67,13 +66,12 @@ void sprite(int *srt, t_data *data)
 		data->srt.draw_ex = (data->srt.srt_w / 2) + data->srt.srt_pos_x;
 		if (data->srt.draw_ex >= data->w_w )
 			data->srt.draw_ex = data->w_w - 1;
-		data->srt.stripe = data->srt.draw_sx;
-		draw_sprite(srt,  data);
+		draw_sprite(srt, buff,  data);
 		i++;
 	}
 }
 
-int brain_sprite(t_data *data)
+int init_sprite(t_data *data)
 {
 	int x;
 	int	y;
@@ -98,6 +96,6 @@ int brain_sprite(t_data *data)
 		}
 		y++;
 	}
-	init_sprite(data);
-    return (0);
+	init_data_sprite(data);
+    return (1);
 }

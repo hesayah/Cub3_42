@@ -16,10 +16,10 @@ EA srcs/img/ea.xpm
 
 S srcs/img/srt.xpm
 
-F        56,0,3
+F  56,10,30
 
 
-C       104,24,0
+C  248,142,148
 
 
 

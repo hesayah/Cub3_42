@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/11 17:24:48 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/15 16:46:55 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/ray_casting/ray_casting.c \
 		srcs/drawing/drawing_one.c \
 		srcs/drawing/drawing_two.c \
+		srcs/save.c \
 		
 LIBFT = libs/libft
 
@@ -39,7 +40,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -O3  -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3 # -g3 -fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
 

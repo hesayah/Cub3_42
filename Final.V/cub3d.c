@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/12 14:28:13 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/15 16:25:37 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int			close_window(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
+	ft_free(data->tab);
+	ft_free(data->maps);
 	//system("leaks cub3D");
 	exit(0);
 	return (0);
@@ -54,6 +56,7 @@ int			close_window(t_data *data)
 int		loop_hook(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, render_next_frame, data);
+	mlx_hook(data->win, 2, 1L << 1, render_next_frame, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
 	return (0);
 }
@@ -86,7 +89,7 @@ int	brain(int argc, char **argv, t_data *data)
 		if (get_first_player_pos(data) == 1)
 		{
 			ft_putstr_fd("PARSING : OK\n", 0);
-			return(load_xpm(data));
+			load_xpm(data);
 		}
 	}
 	else
@@ -94,9 +97,9 @@ int	brain(int argc, char **argv, t_data *data)
 		ft_putstr_fd("ERROR : PARSING FAIL\n", 0);
 		return (0);
 	}
-	ft_putstr_fd("HAVE FUN ;) !\n", 0);	
-	/*if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
-		return(2);*/
+	ft_putstr_fd("HAVE FUN ;)!\n", 0);	
+	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
+		return(2);
 	return (1);
 }
 
@@ -116,10 +119,8 @@ int				main(int argc, char **argv)
 			loop_hook(&data);
 			mlx_loop(data.mlx);
 		}
-		/*else if (brain(argc, argv, data) == 2)
-			save(&data);*/
-		/*else	
-			ft_free(data.tab);*/
+		else
+			save(&data);
 	}
 	else
 		ft_putstr_fd("ERROR : MISSING <file>.cub\n", 0);

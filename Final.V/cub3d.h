@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:25 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 17:53:44 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/14 16:50:39 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct		s_srt
 	int				srt_w;
 	int				draw_sx;
 	int				draw_ex;
-	int				stripe;
 	int				srt_x;
 	int				srt_y;
 	int				pixel;
@@ -162,6 +161,7 @@ typedef struct  s_data
 
 int		loop_hook(t_data *data);
 int		close_window(t_data *data);
+int		ft_check_arg(int argc, char *str);
 int	    brain(int argc, char **argv, t_data *data);
 void	init_data(t_data *data);
 int		pars_brain(char *file, t_data *data);
@@ -174,17 +174,22 @@ unsigned long ft_rgb(int r, int g, int b);
 int		ft_get_map(int index, t_data *data);
 void	init_map_and_cam(t_data *data);
 int		get_first_player_pos(t_data *data);
-int 	brain_sprite(t_data *data);
+int 	pars_sprite(t_data *data);
 int		load_xpm(t_data *data);
 int		action_key(int keycode, t_data *data);
 int		render_next_frame(int keycode, t_data *data);
-void	ray_casting(t_data *data);
+void	ray_casting(double *buff, t_data *data);
 void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
 void	draw_c_wall(int x, int *txt, t_data *data);
-void 	sprite(int *srt, t_data *data);
-void	init_sprite(t_data *data);
-void	draw_sprite(int *srt, t_data *data);
+void 	draw_map(t_data *data);
+void 	draw_player(t_data *data);
+int		init_sprite(t_data *data);
+void 	brain_sprite(int *srt, double *buff, t_data *data);
+void	init_data_sprite(t_data *data);
+void	draw_sprite(int *srt, double *buff, t_data *data);
 void    ft_debug(t_data *data);
+void	save(t_data *data);
+void	save_frame(t_data *data);
 void    code_err(int code);
 int     exit_error(int code, t_data *data);
 
