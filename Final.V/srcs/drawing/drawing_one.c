@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:20 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 15:00:40 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/17 18:17:54 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	        draw_c_wall(int x, int *txt, t_data *data)
 	{
 		if (y < data->cast.start)
 			my_mlx_pixel_put(x, y, data->tex.ceiling, data);
-		else if (y >= data->cast.start && y <= data->cast.end)
+		else if (y + 1 > data->cast.start && y + 1 < data->cast.end)
 		{
 			data->tex.tex_p += data->tex.step;
 			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;

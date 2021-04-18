@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:15:41 by hesayah           #+#    #+#             */
-/*   Updated: 2021/02/04 14:55:59 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:32:08 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 
 typedef struct		s_list
 {

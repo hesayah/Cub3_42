@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:07:39 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/15 16:54:18 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 18:11:28 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int		ft_check_arg(int argc, char *str)
 	return (0);
 }
 
-void	ft_header(int fd, t_data *data)
+void	ft_header_bmp(int fd, t_data *data)
 {
   int	tmp;
 
-  write(fd, "BM", 2); //La signature (sur 2 octets), indiquant qu'il s'agit d'un fichier BMP à l'aide des deux caractères. 
-  		    // BM, 424D en hexadécimal, indique qu'il s'agit d'un Bitmap Windows.
+  write(fd, "BM", 2);
+
   tmp = 14 + 40 + 4 * data->w_w * data->w_h; //La taille totale du fichier en octets (codée sur 4 octets)
   write(fd, &tmp, 4);
   tmp = 0;
@@ -57,6 +57,26 @@ void	ft_header(int fd, t_data *data)
   write(fd, &tmp, 4);
   write(fd, &tmp, 4);
   write(fd, &tmp, 4);
+}
+
+void    create_img_bmp(int fd, int *img, t_data *data)
+{
+  int x;
+  int y;
+
+  
+  y = data->w_h;
+  while (y > 0)
+  {
+    x = 0;
+    while (x < data->w_w)
+    {
+        data->srt.color = img[data->w_h * y + x];
+        write(fd, &data->srt.color, 16);
+        x++;
+    }
+    y--;
+  }
 }
 
 void	save_frame(t_data *data)
@@ -82,5 +102,7 @@ void    save(t_data  *data)
 	&data->line_length, &data->endian);
     save_frame(data);
 	fopen("../save.bmp", "w");
+    ft_header_bmp(save_img, data);
+    create_img_bmp(save_img, data->img, data);
 	fclose(save_img);
 }

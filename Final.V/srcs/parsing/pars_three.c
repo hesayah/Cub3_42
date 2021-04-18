@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:27:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:46:43 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:00:13 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	get_path_tex(int index, char *str, t_data *data)
 		i++;
     while (str[i] && str[i] == ' ')
 		i++;
-	data->tex.r_path[index] =   ft_substr(str, i, ft_strlen(str) - i);
+	data->tex.r_path[index] = ft_substr(str, i, ft_strlen(str) - i);
 	fd = open(data->tex.r_path[index], O_RDONLY);
 	if (fd < 0)
 	{

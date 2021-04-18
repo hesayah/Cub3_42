@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:58:15 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/09 16:46:54 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:37:39 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ int pars_value_line(t_data *data)
 				return(exit_error(4, data));
 		}
 		else if ((int)(data->tab[i][0]) != 0)
-		{
-			
 			return(exit_error(4, data));
-		}
 		i++;
 	}
 	if (check_value(data) == 0)

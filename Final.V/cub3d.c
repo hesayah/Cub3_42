@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/15 16:25:37 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 17:38:04 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,12 @@ int	brain(int argc, char **argv, t_data *data)
 int				main(int argc, char **argv)
 {
 	t_data data;
+	int		res;
 
 	if (argc > 1 && ft_check_ext(argv[1]) == 1)
-	{
-		if (brain(argc, argv, &data) == 1)
+	{	
+		res = brain(argc, argv, &data);
+		if (res == 1)
 		{
 			data.win = mlx_new_window(data.mlx, data.w_w, data.w_h, "HeSayah Cub3D");
 			data.img = mlx_new_image(data.mlx, data.w_w, data.w_h);
@@ -119,7 +121,7 @@ int				main(int argc, char **argv)
 			loop_hook(&data);
 			mlx_loop(data.mlx);
 		}
-		else
+		else if (res == 2)
 			save(&data);
 	}
 	else

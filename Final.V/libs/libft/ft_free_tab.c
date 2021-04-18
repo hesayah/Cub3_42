@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 15:38:36 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/07 13:01:02 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:26:46 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	ft_free(char **tab)
 	int i;
 
 	i = 0;
-	while (tab[i])
+	if (!(tab))
+		;
+	while (tab[i] != NULL)
 		i++;
 	while (i >= 0)
 	{
-		if (tab[i] != NULL)
+		if (tab[i])
 		{
 			free(tab[i]);
 			tab[i] = NULL;
