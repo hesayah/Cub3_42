@@ -34,8 +34,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "\033[32m[libft.a ;)]"
-	@$(GCC) $(FLAGS) -c $(SRCS) -I $(INCLUDE)
-	@ar rc $(NAME) $^
+	@$(GCC) $(FLAGS) -c $(SRCS)
+	@ar rc $(NAME)
 	@ranlib $(NAME)
 	@echo "\033[32m[Success :D !]"
 	

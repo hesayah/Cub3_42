@@ -42,7 +42,7 @@ GCC = gcc
 
 FLAGS = -Wall -Wextra -Werror -O3  -g3 -fsanitize=address
 
-MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
+MLX = -Llibs/mlx -lmlx -lXext -lX11
 
 all: $(NAME)
 
