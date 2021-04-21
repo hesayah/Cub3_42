@@ -6,7 +6,7 @@
 #    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/21 09:03:55 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/21 11:21:29 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -O3  -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3  -g3
 
 MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
 

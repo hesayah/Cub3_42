@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 09:49:44 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:21:37 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ int			close_window(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
+	system("leaks cub3D");
+	exit(0);
 	return (0);
 }
 
 int		loop_hook(t_data *data)
 {
+	mlx_hook(data->win, 2, 1L << 0, render_next_frame, data);
 	mlx_hook(data->win, 2, 1L << 1, render_next_frame, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
 	return (0);
@@ -116,5 +119,6 @@ int				main(int argc, char **argv)
 	}
 	else
 		ft_putstr_fd("ERROR : MISSING <file>.cub\n", 0);
-	exit (0);
+	exit(0);
+	return (0);
 }
