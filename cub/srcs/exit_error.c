@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:35:44 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 04:06:11 by hedi             ###   ########.fr       */
+/*   Updated: 2021/04/21 09:38:09 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ int clean_up(int code, t_data *data)
     if (code >= 1)
     {
         ft_free(data->tab);
-
+        ft_free(data->tex.r_path);
     }
     if (code >= 2)
     {
         ft_free(data->map);
         if (data->sprite)
             free(data->sprite);
+        /*if (data->maps.n_srt > 0)
+            free(data->sprite);*/
     }
     //system("leaks cub3D");
     exit(0);
@@ -40,24 +42,29 @@ void    code_err(int code)
 
 void    exit_error(int code, t_data *data)
 {
-    /*if (code == 1)
+    if (code == 0)
         ft_putstr_fd("ERROR : BAD EXTENTION\n", 0);
+    if (code == 1)
+        ft_putstr_fd("ERROR : PARSING MAP WRONG INPUT\n", 0);
     if (code == 2)
-        ft_putstr_fd("ERROR : PARSING GETTING RESOLUTION\n", 0);
+        ft_putstr_fd("ERROR : PARSING WRONG ID\n", 0);
     if (code == 3)
-        ft_putstr_fd("ERROR : MAYBE BAD PATH TEXTURE\n", 0);
+        ft_putstr_fd("ERROR : PARSING GETTING RESOLUTION\n", 0);
     if (code == 4)
-        ft_putstr_fd("ERROR PARSING : BAD INDICATOR OR VALUE\n", 0);
+        ft_putstr_fd("ERROR : PARSING MULTIPLE PATH TEXTURE\n", 0);
     if (code == 5)
-        ft_putstr_fd("ERROR PARSING : CHECK COLOR LINE\n", 0);
+        ft_putstr_fd("ERROR : PARSING CHECK COLORS LINES\n", 0);
     if (code == 6)
-        ft_putstr_fd("ERROR PARSING : RGB < 0 || RGB > 255 ", 0);
+        ft_putstr_fd("ERROR : PARSING  RES < SIZE_MIN || RES > SIZE_MAX\n", 0);
     if (code == 7)
-        ft_putstr_fd("ERROR : PARSING VALUE FALSE OR MISSING\n", 0);
+        ft_putstr_fd("ERROR : PARSING PATH TEXTURES MISSING\n", 0);
     if (code == 8)
-        ft_putstr_fd("ERROR PARSING : RES < SIZE_MIN || RES > SIZE_MAX ", 0);
+        ft_putstr_fd("ERROR PARSING : RGB < 0 || RGB > 255\n", 0);
+    /*
     if (code == 9)
         ft_putstr_fd("ERROR PARSING : MAP OPEN", 0);*/
+    if (code == 10)
+        ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);
     if (code <= 8)
         data->err = -1;
     else

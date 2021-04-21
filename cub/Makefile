@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+         #
+#    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/21 04:20:53 by hedi             ###   ########.fr        #
+#    Updated: 2021/04/21 09:03:55 by hesayah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -O3  -g3
+FLAGS = -Wall -Wextra -Werror -O3  -g3 -fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
 

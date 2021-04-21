@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:26:03 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/14 14:50:09 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 09:27:37 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		get_first_player_pos(t_data *data)
 	}
 	if (data->maps.spown != 1)
 		{
-			printf("ERROR MAP : SPOWN\n");
+			printf("ERROR : MAP SPOWN\n");
 			return (0);
 		}
     if (data->maps.n_srt > 0)

@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:53:16 by hesayah           #+#    #+#             */
-/*   Updated: 2021/02/03 10:34:51 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 08:07:16 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include "../../cub3d.h"
 
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 1
 
 int		get_next_line(int fd, char **line);
 size_t	ft_check(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:31:57 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 03:49:29 by hedi             ###   ########.fr       */
+/*   Updated: 2021/04/21 09:39:33 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ void	brain_sprite(int *srt, double *buff, t_data *data)
 	}
 }
 
-int init_sprite(t_data *data)
+void init_sprite(t_data *data)
 {
 	int x;
 	int	y;
 	int i;
 
-	y = 0;
-	i = 0;
     if (!(data->sprite = malloc(sizeof(t_sprite) * data->maps.n_srt)))
-        exit_error(-10, data);
+       return (exit_error(10, data));
+	i = 0;
+	y = 0;
 	while (data->map[y] != NULL)
 	{
 		x = 0;
@@ -97,5 +97,4 @@ int init_sprite(t_data *data)
 		y++;
 	}
 	init_data_sprite(data);
-    return (1);
 }

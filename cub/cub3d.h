@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:25 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 03:48:00 by hedi             ###   ########.fr       */
+/*   Updated: 2021/04/21 09:39:07 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,16 +165,16 @@ int		close_window(t_data *data);
 int		ft_check_arg(int argc, char *str);
 int	    brain(int argc, char **argv, t_data *data);
 void	init_data(t_data *data);
-int	pars_brain(char *file, t_data *data);
-int  	  pars_value_line(t_data *data);
+void	pars_brain(char *file, t_data *data);
+int  	 pars_value_line(t_data *data);
 int     c_in_str(char c, char *s2);
 void	get_res(char *str, t_data *data);
 int		scan_id(char *str, t_data *data);
 void	get_path_tex(int index, char *str, t_data *data);
 unsigned long ft_rgb(int r, int g, int b);
-int	ft_get_map(int index, t_data *data);
+void	ft_get_map(int index, t_data *data);
 void	init_map_and_cam(t_data *data);
-int	get_first_player_pos(t_data *data);
+int		get_first_player_pos(t_data *data);
 int 	pars_sprite(t_data *data);
 int		load_xpm(t_data *data);
 int		action_key(int keycode, t_data *data);
@@ -184,7 +184,7 @@ void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
 void	draw_c_wall(int x, int *txt, t_data *data);
 void 	draw_map(t_data *data);
 void 	draw_player(t_data *data);
-int		init_sprite(t_data *data);
+void	init_sprite(t_data *data);
 void 	brain_sprite(int *srt, double *buff, t_data *data);
 void	init_data_sprite(t_data *data);
 void	draw_sprite(int *srt, double *buff, t_data *data);

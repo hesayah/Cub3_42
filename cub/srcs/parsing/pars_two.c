@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:58:15 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/18 15:37:39 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 09:27:05 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	check_value(t_data *data)
 {
 	if ((data->w_w < 300 || data->w_w > 2560)
 	|| (data->w_h < 300 || data->w_h > 1440))
-		exit_error(8, data);
+		exit_error(6, data);
 	if (data->tex.r_path[0] == NULL || data->tex.r_path[1] == NULL
 		|| data->tex.r_path[2] == NULL || data->tex.r_path[3]== NULL
 		|| data->tex.r_path[4] == NULL)
-		exit_error(3, data);
+		exit_error(7, data);
 	if (data->tex.floor == -1 || data->tex.ceiling == -1)
-		exit_error(6, data);
+		exit_error(8, data);
 }
 
 static void get_clg_flr_value_2(char *str, int i, t_data *data)
@@ -70,17 +70,17 @@ int		scan_id(char *str, t_data *data)
 {
 	if (ft_strncmp(str, "R ", 2) == 0)
 		get_res(str, data);
-	if (ft_strncmp(str, "NO ", 3) == 0)
+	else if (ft_strncmp(str, "NO ", 3) == 0)
 		get_path_tex(0, str, data);
-	if (ft_strncmp(str, "SO ", 3) == 0)
+	else if (ft_strncmp(str, "SO ", 3) == 0)
 		get_path_tex(1, str, data);
-	if (ft_strncmp(str, "WE ", 3) == 0)
+	else if (ft_strncmp(str, "WE ", 3) == 0)
 		get_path_tex(2, str, data);
-	if (ft_strncmp(str, "EA ", 3) == 0)
+	else if (ft_strncmp(str, "EA ", 3) == 0)
 		get_path_tex(3, str, data);
-	if (ft_strncmp(str, "S ", 2) == 0)
+	else if (ft_strncmp(str, "S ", 2) == 0)
 		get_path_tex(4, str, data);
-	if(ft_strncmp(str, "C " , 2) == 0 ||
+	else if(ft_strncmp(str, "C " , 2) == 0 ||
 	ft_strncmp(str,"F " , 2) == 0)
 		get_clg_flr_value(str, data);
 	else
@@ -98,13 +98,14 @@ int pars_value_line(t_data *data)
 		if (c_in_str(data->tab[i][0], "RNSWEFC") == 1)
 		{
 			if (scan_id(data->tab[i], data) == 0)
-				exit_error(4, data);
+				exit_error(2, data);
 		}
 		else if ((int)(data->tab[i][0]) != 0)
-			exit_error(4, data);
+			exit_error(2, data);
 		i++;
 	}
 	check_value(data);
+	//printf("err = [%i]\n", data->err);
 	if (data->err == -1)
 		return (clean_up(1, data));
 	ft_get_map(i, data);

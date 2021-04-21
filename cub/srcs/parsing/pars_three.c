@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:27:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 03:45:57 by hedi             ###   ########.fr       */
+/*   Updated: 2021/04/21 09:04:10 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,9 @@ int c_in_str(char c, char *s2)
 	return (0);
 }
 
-void		get_res(char *str, t_data *data)
+
+void        get_res_two(int i, char *str, t_data *data)
 {
-	int i;
-
-	i = 2;
-    while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
-    {   
-	    if (str[i] >= '0' && str[i] <= '9')
-        {
-
-		    data->w_w = ft_atoi(str + i);
-            break ;
-        }
-        i++;
-    }
-    while (str[i] >= '0' && str[i] <= '9')
-        i++;
-    if (str[i] != ' ')
-        return (exit_error(2, data));
     while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
     {   
 	    if (str[i] >= '0' && str[i] <= '9')
@@ -61,9 +45,31 @@ void		get_res(char *str, t_data *data)
     while (str[i])
     {
         if (str[i] != '0')
-            return (exit_error(2, data));
+            return (exit_error(3, data));
+     i++;
+    }
+}
+
+
+void		get_res(char *str, t_data *data)
+{
+	int i;
+
+	i = 2;
+    while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
+    {   
+	    if (str[i] >= '0' && str[i] <= '9')
+        {
+		    data->w_w = ft_atoi(str + i);
+            break ;
+        }
         i++;
     }
+    while (str[i] >= '0' && str[i] <= '9')
+        i++;
+    if (str[i] != ' ')
+        return (exit_error(3, data));
+    get_res_two(i, str, data);
 }
 
 
@@ -74,7 +80,7 @@ void	get_path_tex(int index, char *str, t_data *data)
     char *tmp;
 	
     if (data->tex.r_path[index] != NULL)
-        return(exit_error(3, data));
+        return(exit_error(4, data));
     i = 0;
 	while (str[i] && str[i] != ' ')
 		i++;

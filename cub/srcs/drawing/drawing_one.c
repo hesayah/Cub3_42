@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:20 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/17 18:17:54 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 09:13:37 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void            my_mlx_pixel_put(int x, int y, int color, t_data *data)
 unsigned long ft_rgb(int r, int g, int b)
 {   
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (0);
+		return ((int)(-1));
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
