@@ -6,7 +6,7 @@
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:35:44 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 09:38:09 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:31:54 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int clean_up(int code, t_data *data)
 {
     if (code >= 1)
-    {
         ft_free(data->tab);
-        ft_free(data->tex.r_path);
-    }
     if (code >= 2)
     {
         ft_free(data->map);
@@ -27,7 +24,7 @@ int clean_up(int code, t_data *data)
         /*if (data->maps.n_srt > 0)
             free(data->sprite);*/
     }
-    //system("leaks cub3D");
+    system("leaks cub3D");
     exit(0);
     return (0);
 }
