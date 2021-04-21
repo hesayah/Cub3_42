@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_brain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:12:51 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/18 17:34:12 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:42:01 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,27 @@ int	get_nb(char *file)
 int			pars_brain(char *file, t_data *data)
 {
 	int		fd;
-	char	**tab;
 	char	*line;
 	int		i;
 
 	i = get_nb(file);
 	fd = open(file, O_RDONLY);
-	tab = (char**)malloc(sizeof(char*) * i);
-	ft_bzero(tab, i);
+	data->tab = (char**)malloc(sizeof(char*) * (i + 1));
+	ft_memset(data->tab, 0, i + 1);
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		tab[i] = ft_strdup(line);
+		data->tab[i] = ft_strdup(line);
 		free(line);
 		i++;
 	}
-	tab[i] = ft_strdup(line);
-	tab[i + 1] = NULL;
-	data->tab = tab;
+	data->tab[i] = ft_strdup(line);
+	data->tab[i + 1] = NULL;
 	free(line);
-	if (check_value_map(data) == 1)
+	ft_debug(data);
+	/*if (check_value_map(data) == 1)
 		pars_value_line(data);
 	else
-		return (0);
+		return (0);*/
+	return (1);
 }

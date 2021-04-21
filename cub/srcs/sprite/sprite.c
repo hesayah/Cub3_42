@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:31:57 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/14 14:49:29 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 03:49:29 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static	void	sort_srt(t_data *data)
 	t_sprite tmp;
 
 	i = 0;
-	while (i < data->map.n_srt)
+	while (i < data->maps.n_srt)
 	{
 		data->sprite[i].dist = (pow(data->cam.posy - data->sprite[i].y, 2) + pow(data->cam.posx - data->sprite[i].x, 2));
 		i++;
 	}
 	i = 0;
-	while (i < data->map.n_srt - 1)
+	while (i < data->maps.n_srt - 1)
 	{
 		if (data->sprite[i].dist < data->sprite[i + 1].dist)
 		{
@@ -44,7 +44,7 @@ void	brain_sprite(int *srt, double *buff, t_data *data)
 	
 	i = 0;
 	sort_srt(data);
-	while(i < data->map.n_srt)
+	while(i < data->maps.n_srt)
 	{
 		data->srt.sprite_x = data->sprite[i].x  - data->cam.posx;
 		data->srt.sprite_y = data->sprite[i].y  - data->cam.posy;
@@ -79,14 +79,14 @@ int init_sprite(t_data *data)
 
 	y = 0;
 	i = 0;
-    if (!(data->sprite = malloc(sizeof(t_sprite) * data->map.n_srt)))
-        return (exit_error(-10, data));
-	while (data->maps[y] != NULL)
+    if (!(data->sprite = malloc(sizeof(t_sprite) * data->maps.n_srt)))
+        exit_error(-10, data);
+	while (data->map[y] != NULL)
 	{
 		x = 0;
-		while (data->maps[y][x] != '\0')
+		while (data->map[y][x] != '\0')
 		{
-			if (data->maps[y][x] == '2')
+			if (data->map[y][x] == '2')
 			{
 				data->sprite[i].x = x + 0.5;
 				data->sprite[i].y = y + 0.5;

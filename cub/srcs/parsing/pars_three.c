@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:27:26 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/18 16:00:13 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/21 03:45:57 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		get_res(char *str, t_data *data)
             return (exit_error(2, data));
         i++;
     }
-	return (1);
 }
 
 
