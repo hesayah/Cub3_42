@@ -46,7 +46,6 @@ int			close_window(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
-	system("leaks cub3D");
 	exit(0);
 	return (0);
 }

@@ -10,8 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
-
 INCLUDE = cub3d.h libs/libft/libft.h libs/gnl/get_next_line.h
 
 SRCS =	libs/gnl/get_next_line_utils.c \
@@ -32,31 +30,36 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/drawing/drawing_two.c \
 		srcs/save.c \
 		
-LIBFT = libs/libft
+LIBFT_PATH = libs/libft
+
+MLX_PATH = libs/mlx
 
 LIB = libs/libft/libft.a libs/mlx/libmlx.a
 
 OBJ = $(SRCS:.c=.o)
 
-GCC = gcc 
+GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -O3  -g3
+FLAGS = -Wall -Wextra -Werror
 
-MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit 
+MLX = -Llibs/mlx -lmlx -lXext -lX11 -lm
+
+NAME = cub3D
 
 all: $(NAME)
-
 $(NAME):${OBJ}
 	@echo "\033[32m[Compile Lib...]"
-	@$(MAKE) -C $ $(LIBFT)
+	@$(MAKE) -C $ $(LIBFT_PATH)
+	@echo "\033[32m[Compile mlx...]"
+	@$(MAKE) -C $ $(MLX_PATH)
 	@echo "\033[32m[Compile CUB3D...]"
-	@$(GCC) $(FLAGS) $(MLX) $(LIB) -o $(NAME) ${OBJ}
+	#$(GCC) $(FLAGS) $(MLX) $(LIB) -o $(NAME) ${OBJ}
+	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX) 
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 clean:
 	@rm -rf $(OBJ)
 	@echo "\033[32m[Clean-UP DONE]"
-
 	
 fclean: clean
 	rm -rf libs/libft/*.o
@@ -66,3 +69,4 @@ fclean: clean
 re: fclean all
 
 0: all clean
+
