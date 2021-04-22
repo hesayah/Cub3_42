@@ -83,13 +83,14 @@ int	brain(int argc, char **argv, t_data *data)
 {
 	init_data(data);
 	pars_brain(argv[1], data);
+	ft_debug(data);
 	if (data->err == -1)
 	{
-		ft_putstr_fd("ERROR : PARSING FAIL ==> CLEAN UP DOWN\n", 0);
+		ft_putstr_fd("ERROR : PARSING FAIL ==> CLEAN UP\n", 0);
 		return (0);
 	}
-	if (!(load_xpm(data)))
-		return (0);
+	/*if (!(load_xpm(data)))
+		return (0);*/
 	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
 		return(2);
 	return (1);
@@ -103,6 +104,7 @@ int				main(int argc, char **argv)
 
 	if (argc > 1 && ft_check_ext(argv[1], &data) == 1)
 	{	
+		data.mlx = mlx_init();
 		res = brain(argc, argv, &data);
 		if (res == 1)
 		{

@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = cub3D
+
 INCLUDE = cub3d.h libs/libft/libft.h libs/gnl/get_next_line.h
 
 SRCS =	libs/gnl/get_next_line_utils.c \
@@ -44,8 +46,6 @@ FLAGS = -Wall -Wextra -Werror
 
 MLX = -Llibs/mlx -lmlx -lXext -lX11 -lm
 
-NAME = cub3D
-
 all: $(NAME)
 $(NAME):${OBJ}
 	@echo "\033[32m[Compile Lib...]"
@@ -53,8 +53,7 @@ $(NAME):${OBJ}
 	@echo "\033[32m[Compile mlx...]"
 	@$(MAKE) -C $ $(MLX_PATH)
 	@echo "\033[32m[Compile CUB3D...]"
-	#$(GCC) $(FLAGS) $(MLX) $(LIB) -o $(NAME) ${OBJ}
-	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX) 
+	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(INCLUDE) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 clean:
@@ -62,9 +61,10 @@ clean:
 	@echo "\033[32m[Clean-UP DONE]"
 	
 fclean: clean
-	rm -rf libs/libft/*.o
-	rm -rf libs/mlx/*.o
-	rm -rf $(NAME)
+	@$(MAKE) -C $ $(LIBFT_PATH) fclean
+	@$(MAKE) -C $ $(MLX_PATH) clean
+	@rm -rf $(NAME)
+	@echo "\033[32m[Clean-UP DONE]"
 
 re: fclean all
 
