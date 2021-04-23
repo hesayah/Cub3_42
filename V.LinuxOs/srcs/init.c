@@ -29,6 +29,11 @@ void	init_data(t_data *data)
 	data->tex.tex[2] = NULL;
 	data->tex.tex[3] = NULL;
 	data->tex.tex[4] = NULL;
+	data->tex.xpm[0] = NULL;
+	data->tex.xpm[1] = NULL;
+	data->tex.xpm[2] = NULL;
+	data->tex.xpm[3] = NULL;
+	data->tex.xpm[4] = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
 	data->maps.m_x = 0;

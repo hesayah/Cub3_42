@@ -118,7 +118,7 @@ typedef struct		s_tex
 	int				endian;
 	int				img_width;
 	int				img_height;
-	void			*xpm;
+	void			*xpm[5];
 	void			*tex[5];
 	int				tex_y;
 	int				tex_x;
@@ -168,7 +168,7 @@ void				get_path_tex(int index, char *str, t_data *data);
 unsigned long		ft_rgb(int r, int g, int b);
 void				ft_get_map(int index, t_data *data);
 void				init_map_and_cam(t_data *data);
-int					get_first_player_pos(t_data *data);
+void				get_first_player_pos(t_data *data);
 int					pars_sprite(t_data *data);
 int					load_xpm(t_data *data);
 int					action_key(int keycode, t_data *data);
@@ -187,5 +187,6 @@ void				save_frame(t_data *data);
 void				code_err(int code);
 void				exit_error(int code, t_data *data);
 int					clean_up(int code, t_data *data);
+void				free_xpm(t_data *data);
 
 #endif

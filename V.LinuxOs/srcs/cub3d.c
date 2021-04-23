@@ -38,20 +38,27 @@ static int	ft_check_ext(char *str, t_data *data)
 {
 	int	i;
 	int	fd;
+	char *line;
 	int	errno;
 
-	i = 0;
 	errno = 0;
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
+	{
 		code_err(errno);
+		return (0);
+	}
+	i = get_next_line(fd, &line);
+	free(line);
+	if (!i)
+		return (0);
 	close(fd);
+	i = 0;
 	while (str[i] != '\0' && str[i] != '.')
 		i++;
 	if (ft_strncmp(str + i, ".cub", 5) == 0)
 		return (1);
-	else
-		exit_error(0, data);
+	exit_error(0, data);
 	return (0);
 }
 
@@ -59,16 +66,17 @@ int			brain(int argc, char **argv, t_data *data)
 {
 	init_data(data);
 	pars_brain(argv[1], data);
-	/*if (data->err == -1)
+	/*if (data->err != 0)
 	{
+		clean_up(2, data);
 		ft_putstr_fd("ERROR : PARSING FAIL ==> CLEAN UP\n", 0);
 		return (0);
-	}
+	}*/
 	if (!(load_xpm(data)))
 		return (0);
-	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
+	/*if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
 		return (2);*/
-	clean_up(2, data);
+	//clean_up(3, data);
 	return (1);
 }
 
@@ -81,10 +89,10 @@ int			main(int argc, char **argv)
 	{
 		data.mlx = mlx_init();
 		res = brain(argc, argv, &data);
-		/*if (res == 1)
+		if (res == 1)
 			loop_hook(&data);
 		else if (res == 2)
-			save(&data);*/
+			save(&data);
 	}
 	else
 		ft_putstr_fd("ERROR : MISSING <file>.cub\n", 0);

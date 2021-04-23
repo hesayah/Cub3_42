@@ -79,7 +79,7 @@ void		pars_brain(char *file, t_data *data)
 	fd = open(file, O_RDONLY);
 	if (!(data->tab =
 	(char**)malloc(sizeof(char*) * (i + 1))))
-		return ;
+		return (exit_error(-1, data));
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{

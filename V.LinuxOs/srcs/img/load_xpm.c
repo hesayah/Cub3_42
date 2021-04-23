@@ -12,10 +12,10 @@
 
 #include "../../cub3d.h"
 
-int		get_tex(t_data *data)
+/*int		get_tex(t_data *data)
 {
-	if ((data->tex.xpm = mlx_xpm_file_to_image(data->mlx, data->tex.r_path[3],
-	 &data->tex.img_width, &data->tex.img_height)) != NULL)
+	if (!(data->tex.xpm = mlx_xpm_file_to_image(data->mlx, data->tex.r_path[3],
+	 &data->tex.img_width, &data->tex.img_height)))
 		(data->tex.tex[3] = (int*)mlx_get_data_addr(data->tex.xpm, 
 		&data->tex.bits_per_pixel, &data->tex.line_length, &data->tex.endian));
 	if ((data->tex.xpm = mlx_xpm_file_to_image(data->mlx, data->tex.r_path[1], 
@@ -40,9 +40,42 @@ int		get_sprite(t_data *data)
 		(data->tex.tex[4] = (int*)mlx_get_data_addr(data->tex.xpm, 
 		&data->tex.bits_per_pixel, &data->tex.line_length, &data->tex.endian));
 	return (1);
-}
+}*/
 
 int		load_xpm(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (!(data->tex.xpm[i] = mlx_xpm_file_to_image(data->mlx,
+		data->tex.r_path[i], &data->tex.img_width, &data->tex.img_height)))
+		{	
+			exit_error(11, data);
+			return (0);
+		}
+		(data->tex.tex[i] = (int*)mlx_get_data_addr(data->tex.xpm, 
+		&data->tex.bits_per_pixel, &data->tex.line_length, &data->tex.endian));
+		i++;
+	}
+	return (1);
+}
+
+void		free_xpm(t_data *data)
+{
+	int i;
+
+	i = 0;
+	printf("entre ici !!");
+	//while (i < 5)
+	//{
+		//mlx_destroy_image(data->mlx, data->tex.xpm[i]);
+	//	i++;
+	//}
+}
+
+/*int		load_xpm(t_data *data)
 {
 	if (get_tex(data) == 0)
 	{
@@ -56,4 +89,4 @@ int		load_xpm(t_data *data)
 	}
 	ft_putstr_fd("LOAD XPM : OK\n", 0);
 	return (1);
-}
+}*/

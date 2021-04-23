@@ -108,7 +108,7 @@ int			pars_value_line(t_data *data)
 	if (data->err == -1)
 		return (clean_up(1, data));
 	ft_get_map(i, data);
-	/*if (data->err == -2)
-		return (clean_up(2, data));*/
+	if (data->err == -2)
+		return (clean_up(2, data));
 	return (1);
 }
