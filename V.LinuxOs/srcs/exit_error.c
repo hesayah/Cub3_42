@@ -15,16 +15,25 @@
 int clean_up(int code, t_data *data)
 {
     if (code >= 1)
-        ft_free(data->tab);
+    {
+        free(data->tex.r_path[0]);
+        free(data->tex.r_path[1]);
+        free(data->tex.r_path[2]);
+        free(data->tex.r_path[3]);
+        free(data->tex.r_path[4]);
+       
+    }
     if (code >= 2)
     {
         ft_free(data->map);
-        if (data->sprite)
+       /* if (data->sprite)
             free(data->sprite);
-        /*if (data->maps.n_srt > 0)
+        if (data->maps.n_srt > 0)
             free(data->sprite);*/
     }
-    system("leaks cub3D");
+    ft_free(data->tab);
+    mlx_destroy_display(data->mlx);
+    free(data->mlx);
     exit(0);
     return (0);
 }
@@ -39,6 +48,8 @@ void    code_err(int code)
 
 void    exit_error(int code, t_data *data)
 {
+    if (code == -1)
+        ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);
     if (code == 0)
         ft_putstr_fd("ERROR : BAD EXTENTION\n", 0);
     if (code == 1)
@@ -57,11 +68,10 @@ void    exit_error(int code, t_data *data)
         ft_putstr_fd("ERROR : PARSING PATH TEXTURES MISSING\n", 0);
     if (code == 8)
         ft_putstr_fd("ERROR PARSING : RGB < 0 || RGB > 255\n", 0);
-    /*
     if (code == 9)
-        ft_putstr_fd("ERROR PARSING : MAP OPEN", 0);*/
-    if (code == 10)
-        ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);
+        ft_putstr_fd("ERROR PARSING : MAP OPEN", 0);
+   /* if (code == 10)
+        ft_putstr_fd("ERROR : MALLOC FAIL\n", 0);*/
     if (code <= 8)
         data->err = -1;
     else

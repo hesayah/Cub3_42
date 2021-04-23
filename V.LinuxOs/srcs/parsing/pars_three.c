@@ -12,10 +12,10 @@
 
 #include "../../cub3d.h"
 
-int c_in_str(char c, char *s2)
+int		c_in_str(char c, char *s2)
 {
 	int i;
-	
+
 	i = 0;
 	if (!c || !s2)
 		return (0);
@@ -28,63 +28,60 @@ int c_in_str(char c, char *s2)
 	return (0);
 }
 
-
-void        get_res_two(int i, char *str, t_data *data)
+void	get_res_two(int i, char *str, t_data *data)
 {
-    while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
-    {   
-	    if (str[i] >= '0' && str[i] <= '9')
-        {
-		    data->w_h = ft_atoi(str + i);
-            break ;
-        }
-        i++;
-    } 
-    while (str[i] >= '0' && str[i] <= '9')
-        i++;
-    while (str[i])
-    {
-        if (str[i] != '0')
-            return (exit_error(3, data));
-     i++;
-    }
+	while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			data->w_h = ft_atoi(str + i);
+			break ;
+		}
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	while (str[i])
+	{
+		if (str[i] != '0')
+			return (exit_error(3, data));
+		i++;
+	}
 }
 
-
-void		get_res(char *str, t_data *data)
+void	get_res(char *str, t_data *data)
 {
 	int i;
 
 	i = 2;
-    while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
-    {   
-	    if (str[i] >= '0' && str[i] <= '9')
-        {
-		    data->w_w = ft_atoi(str + i);
-            break ;
-        }
-        i++;
-    }
-    while (str[i] >= '0' && str[i] <= '9')
-        i++;
-    if (str[i] != ' ')
-        return (exit_error(3, data));
-    get_res_two(i, str, data);
+	while (str[i] && (str[i] == ' ' || (str[i] >= '0' && str[i] <= '9')))
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			data->w_w = ft_atoi(str + i);
+			break ;
+		}
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] != ' ')
+		return (exit_error(3, data));
+	get_res_two(i, str, data);
 }
-
 
 void	get_path_tex(int index, char *str, t_data *data)
 {
-	int i;
-	int fd;
-    char *tmp;
-	
-    if (data->tex.r_path[index] != NULL)
-        return(exit_error(4, data));
-    i = 0;
+	int		i;
+	int		fd;
+	char	*tmp;
+
+	if (data->tex.r_path[index] != NULL)
+		return (exit_error(4, data));
+	i = 0;
 	while (str[i] && str[i] != ' ')
 		i++;
-    while (str[i] && str[i] == ' ')
+	while (str[i] && str[i] == ' ')
 		i++;
 	data->tex.r_path[index] = ft_substr(str, i, ft_strlen(str) - i);
 	fd = open(data->tex.r_path[index], O_RDONLY);
@@ -92,7 +89,7 @@ void	get_path_tex(int index, char *str, t_data *data)
 	{
 		ft_putstr_fd("ERROR : [", 0);
 		ft_putstr_fd(data->tex.r_path[index], 0);
-        ft_putstr_fd("] : NOT FOUND\n", 0);
-        return(exit_error(3, data));
+		ft_putstr_fd("] : NOT FOUND\n", 0);
+		return (exit_error(3, data));
 	}
 }

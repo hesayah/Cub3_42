@@ -16,7 +16,7 @@ INCLUDE = cub3d.h libs/libft/libft.h libs/gnl/get_next_line.h
 
 SRCS =	libs/gnl/get_next_line_utils.c \
 		libs/gnl/get_next_line.c \
-		cub3d.c \
+		srcs/cub3d.c \
 		srcs/init.c \
 		srcs/exit_error.c \
 		srcs/parsing/pars_brain.c \
@@ -42,7 +42,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3 -ggdb3
 
 MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 

@@ -20,9 +20,8 @@ char	*ft_strdup(const char *str)
 	i = 0;
 	while (str && str[i])
 		i++;
-	if (!(dest = malloc(sizeof(char) * (i + 1))))
+	if (!(dest = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	ft_memset(dest, 0, i);
 	i = 0;
 	while (str && str[i])
 	{
