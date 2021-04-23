@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 11:21:37 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/23 04:53:16 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ void		loop_hook(t_data *data)
 	data->win = mlx_new_window(data->mlx, data->w_w, data->w_h, "HeSayah Cub3D");
 	data->img = mlx_new_image(data->mlx, data->w_w, data->w_h);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	render_next_frame(data);
-	mlx_hook(data->win, 2, 1L << 0, action_key, &data);
-	//mlx_loop_hook(data->mlx, render_next_frame, data);
-	mlx_hook(data->win, 33, 1L << 17, close_window, &data);
+	mlx_hook(data->win, 2, 1L << 0, action_key, data);
+	mlx_loop_hook(data->mlx, render_next_frame, data);
+	mlx_hook(data->win, 33, 1L << 17, close_window, data);
 	mlx_loop(data->mlx); 
 
 }

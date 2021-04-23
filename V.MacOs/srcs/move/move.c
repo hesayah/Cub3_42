@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:34:45 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/11 13:37:55 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/23 04:55:30 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	move_three(int keycode, t_data *data)
 {
-	if (keycode == 97)
+	if (keycode == 2)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		- data->cam.dir_y * data->cam.speed)] == '0')
@@ -23,7 +23,7 @@ static	void	move_three(int keycode, t_data *data)
 		* data->cam.speed)][(int)(data->cam.posx)] == '0')
 			data->cam.posy += data->cam.dir_x * data->cam.speed;
 	}
-	if (keycode == 100)
+	if (keycode == 0)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		+ data->cam.dir_y * data->cam.speed)] == '0')
@@ -36,7 +36,7 @@ static	void	move_three(int keycode, t_data *data)
 
 static	void	move_two(int keycode, t_data *data)
 {
-	if (keycode == 115)
+	if (keycode == 13)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		+ data->cam.dir_x * data->cam.speed)] == '0')
@@ -45,7 +45,7 @@ static	void	move_two(int keycode, t_data *data)
 		* data->cam.speed)][(int)(data->cam.posx)] == '0')
 			data->cam.posy += data->cam.dir_y * data->cam.speed;
 	}
-	if (keycode == 119)
+	if (keycode == 1)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		- data->cam.dir_x * data->cam.speed)] == '0')
@@ -72,7 +72,7 @@ static	void	move_one(int keycode, t_data *data)
 
 static void			brain_move(int keycode, t_data *data)
 {
-	if (keycode == 65361)
+	if (keycode == 123)
 	{
 		data->cam.old_dir_x = data->cam.dir_x;
 		data->cam.dir_x = data->cam.dir_x * cos(-data->cam.rot_speed)
@@ -85,9 +85,9 @@ static void			brain_move(int keycode, t_data *data)
 		data->cam.plane_y = data->cam.old_plane_x * sin(-data->cam.rot_speed)
 		+ data->cam.plane_y * cos(-data->cam.rot_speed);
 	}
-	else if (keycode == 65363)
+	else if (keycode == 124)
 		move_one(keycode, data);
-	else if (keycode == 119 || keycode == 115)
+	else if (keycode == 1 || keycode == 13)
 		move_two(keycode, data);
 	else
 		move_three(keycode, data);
@@ -95,12 +95,10 @@ static void			brain_move(int keycode, t_data *data)
 
 int		action_key(int keycode, t_data *data)
 {
-	printf("keycode == [%i]\n", keycode);
-	if (keycode == 65307)
+	if (keycode == 53)
 		close_window(data);
-	else if (keycode == 100 || keycode == 97 || keycode == 119 || keycode == 115 ||
-	keycode == 65361 || keycode == 65363)
+	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2 ||
+	keycode == 123 || keycode == 124)
 		brain_move(keycode, data);
-	render_next_frame(data);
 	return (0);
 }
