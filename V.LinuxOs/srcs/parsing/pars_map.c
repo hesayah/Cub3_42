@@ -47,7 +47,7 @@ static void ft_get_map_2(char *str, int index, t_data *data)
 
 	i = 0;
 	data->maps.m_x++; 
-	data->map[index] = (char*)malloc(sizeof(char) * data->maps.m_x + 1);
+	data->map[index] = (char*)malloc(sizeof(char) * (data->maps.m_x + 1));
 	while(str[i])
 	{
 		data->map[index][i] = str[i];
@@ -60,8 +60,8 @@ static void ft_get_map_2(char *str, int index, t_data *data)
 			data->map[index][i] = ' ';
 			i++;
 		}
+		data->map[index][i] = '\0';
 	}
-	data->map[index][i] = '\0';
 }
 
 void	ft_get_map(int index, t_data *data)
@@ -71,8 +71,8 @@ void	ft_get_map(int index, t_data *data)
 	i = 0;
 	while (c_in_str(data->tab[index][0], " 012") == 0)
 	{
-		/*if (data->tab[index][0] != 0)	
-			return ;*/
+		if (data->tab[index][0] != 0)	
+			return ;
 		index++;
 	}
 	data->map = (char**)malloc(sizeof(char*) * (data->maps.m_y + 1));

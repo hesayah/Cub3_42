@@ -78,7 +78,7 @@ void			pars_brain(char *file, t_data *data)
 
 	i = get_nb(file);
 	fd = open(file, O_RDONLY);
-	data->tab = (char**)malloc(sizeof(char*) * (i + 1));
+	data->tab = (char**)malloc(sizeof(char*) * (i + 1) + 1);
 	ft_memset(data->tab, 0, i);
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
@@ -90,7 +90,6 @@ void			pars_brain(char *file, t_data *data)
 	data->tab[i] = ft_strdup(line);
 	data->tab[i + 1] = NULL;
 	free(line);
-	printf("data->tab == ok\n");
 	check_value_map(data);
 	pars_value_line(data);
 }

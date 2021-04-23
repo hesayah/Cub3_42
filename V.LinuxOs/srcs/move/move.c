@@ -14,7 +14,7 @@
 
 static	void	move_three(int keycode, t_data *data)
 {
-	if (keycode == 97)
+	if (keycode == 100)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		- data->cam.dir_y * data->cam.speed)] == '0')
@@ -23,7 +23,7 @@ static	void	move_three(int keycode, t_data *data)
 		* data->cam.speed)][(int)(data->cam.posx)] == '0')
 			data->cam.posy += data->cam.dir_x * data->cam.speed;
 	}
-	if (keycode == 100)
+	if (keycode == 113)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		+ data->cam.dir_y * data->cam.speed)] == '0')
@@ -36,7 +36,7 @@ static	void	move_three(int keycode, t_data *data)
 
 static	void	move_two(int keycode, t_data *data)
 {
-	if (keycode == 115)
+	if (keycode == 122)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		+ data->cam.dir_x * data->cam.speed)] == '0')
@@ -45,7 +45,7 @@ static	void	move_two(int keycode, t_data *data)
 		* data->cam.speed)][(int)(data->cam.posx)] == '0')
 			data->cam.posy += data->cam.dir_y * data->cam.speed;
 	}
-	if (keycode == 119)
+	if (keycode == 115)
 	{
 		if (data->map[(int)(data->cam.posy)][(int)(data->cam.posx
 		- data->cam.dir_x * data->cam.speed)] == '0')
@@ -87,7 +87,7 @@ static void			brain_move(int keycode, t_data *data)
 	}
 	else if (keycode == 65363)
 		move_one(keycode, data);
-	else if (keycode == 119 || keycode == 115)
+	else if (keycode == 122 || keycode == 115)
 		move_two(keycode, data);
 	else
 		move_three(keycode, data);
@@ -98,8 +98,8 @@ int		action_key(int keycode, t_data *data)
 	printf("keycode == [%i]\n", keycode);
 	if (keycode == 65307)
 		close_window(data);
-	else if (keycode == 100 || keycode == 97 || keycode == 119 || keycode == 115 ||
-	keycode == 65361 || keycode == 65363)
+	else if (keycode == 100 || keycode == 113 || keycode == 122 ||
+	keycode == 115 || keycode == 65361 || keycode == 65363)
 		brain_move(keycode, data);
 	return (0);
 }
