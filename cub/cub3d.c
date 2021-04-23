@@ -50,12 +50,17 @@ int			close_window(t_data *data)
 	return (0);
 }
 
-int		loop_hook(t_data *data)
+void		loop_hook(t_data *data)
 {
-	mlx_hook(data->win, 2, 1L << 0, render_next_frame, data);
-	mlx_hook(data->win, 2, 1L << 1, render_next_frame, data);
-	mlx_hook(data->win, 17, 0, close_window, data);
-	return (0);
+	data->win = mlx_new_window(data->mlx, data->w_w, data->w_h, "HeSayah Cub3D");
+	data->img = mlx_new_image(data->mlx, data->w_w, data->w_h);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	render_next_frame(data);
+	mlx_hook(data->win, 2, 1L << 0, action_key, &data);
+	//mlx_loop_hook(data->mlx, render_next_frame, data);
+	mlx_hook(data->win, 33, 1L << 17, close_window, &data);
+	mlx_loop(data->mlx); 
+
 }
 
 static int		ft_check_ext(char *str, t_data *data)
@@ -83,14 +88,13 @@ int	brain(int argc, char **argv, t_data *data)
 {
 	init_data(data);
 	pars_brain(argv[1], data);
-	ft_debug(data);
 	if (data->err == -1)
 	{
 		ft_putstr_fd("ERROR : PARSING FAIL ==> CLEAN UP\n", 0);
 		return (0);
 	}
-	/*if (!(load_xpm(data)))
-		return (0);*/
+	if (!(load_xpm(data)))
+		return (0);
 	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
 		return(2);
 	return (1);
@@ -107,14 +111,7 @@ int				main(int argc, char **argv)
 		data.mlx = mlx_init();
 		res = brain(argc, argv, &data);
 		if (res == 1)
-		{
-			data.win = mlx_new_window(data.mlx, data.w_w, data.w_h, "HeSayah Cub3D");
-			data.img = mlx_new_image(data.mlx, data.w_w, data.w_h);
-			data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-			render_next_frame(0, &data);
 			loop_hook(&data);
-			mlx_loop(data.mlx);
-		}
 		else if (res == 2)
 			save(&data);
 	}

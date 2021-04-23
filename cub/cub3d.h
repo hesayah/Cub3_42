@@ -160,7 +160,7 @@ typedef struct  s_data
     
 }               t_data;
 
-int		loop_hook(t_data *data);
+void	loop_hook(t_data *data);
 int		close_window(t_data *data);
 int		ft_check_arg(int argc, char *str);
 int	    brain(int argc, char **argv, t_data *data);
@@ -178,7 +178,7 @@ int		get_first_player_pos(t_data *data);
 int 	pars_sprite(t_data *data);
 int		load_xpm(t_data *data);
 int		action_key(int keycode, t_data *data);
-int		render_next_frame(int keycode, t_data *data);
+int		render_next_frame(t_data *data);
 void	ray_casting(double *buff, t_data *data);
 void    my_mlx_pixel_put(int x, int y, int color, t_data *data);
 void	draw_c_wall(int x, int *txt, t_data *data);

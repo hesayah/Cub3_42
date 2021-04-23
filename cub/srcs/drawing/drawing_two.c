@@ -100,12 +100,10 @@ void	draw_sprite(int *srt, double *buff, t_data *data)
 }
 
 
-int		render_next_frame(int keycode, t_data *data)
+int		render_next_frame(t_data *data)
 {
 	double buff[data->w_w];
 
-	printf("code == [%i]\n", keycode);
-	action_key(keycode, data);
 	ray_casting(buff, data);
 	if (data->srt.hit == 1)
 		brain_sprite(data->tex.tex[4], buff,  data);

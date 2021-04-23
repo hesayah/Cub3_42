@@ -76,22 +76,29 @@ static	void	play_casting(t_data *data)
 	}
 }
 
-static void		wall(int x, t_data *data)
+void		wall(int x, t_data *data)
 {
+	data->cast.wall = data->w_h / data->cast.dist_ray;
+	data->cast.start =(-data->cast.wall / 2  + data->w_h / 2);
+	if (data->cast.start < 0) 
+		data->cast.start = 0; 
+	data->cast.end = (data->cast.wall / 2 +  data->w_h / 2);
+	if (data->cast.end > data->w_h) 
+		data->cast.end = data->w_h - 1;
 	if (data->cast.side == 0)
-		{
-			if (data->cast.mapx - data->cam.posx  > 0)
-				draw_c_wall(x , data->tex.tex[2], data);
-			else
-				draw_c_wall(x , data->tex.tex[3], data);
-		}
+	{
+		if (data->cast.mapx - data->cam.posx  > 0)
+			draw_c_wall(x, data->tex.tex[2], data);
 		else
-		{
-			if (data->cast.mapy - data->cam.posy > 0)
-				draw_c_wall(x , data->tex.tex[1], data);
-			else
-				draw_c_wall(x , data->tex.tex[0], data);
-		}
+			draw_c_wall(x, data->tex.tex[3], data);
+	}
+	else
+	{
+		if (data->cast.mapy - data->cam.posy > 0)
+			draw_c_wall(x, data->tex.tex[1], data);
+		else
+			draw_c_wall(x, data->tex.tex[0], data);
+	}
 }
 
 void            ray_casting(double *buff, t_data *data)
@@ -106,17 +113,12 @@ void            ray_casting(double *buff, t_data *data)
 		init_dda(data);
 		play_casting(data);
 		if (data->cast.side == 0)
-			data->cast.dist_ray = (data->cast.mapx - data->cam.posx + (1 - data->cast.stepx) /2 ) / data->cast.ray_x;
+			data->cast.dist_ray = (data->cast.mapx - data->cam.posx +
+			(1 - data->cast.stepx) / 2) / data->cast.ray_x;
 		else
-			data->cast.dist_ray = (data->cast.mapy - data->cam.posy + (1 - data->cast.stepy) / 2 )/ data->cast.ray_y;
+			data->cast.dist_ray = (data->cast.mapy - data->cam.posy +
+			(1 - data->cast.stepy) / 2) / data->cast.ray_y;
 		buff[x] = data->cast.dist_ray;
-		data->cast.wall = data->w_h / data->cast.dist_ray;
-		data->cast.start =(-data->cast.wall / 2  + data->w_h / 2); 
-		if (data->cast.start < 0) 
-			data->cast.start = 0; 
-		data->cast.end = (data->cast.wall / 2 +  data->w_h / 2);
-		if (data->cast.end >= data->w_h) 
-			data->cast.end = data->w_h - 1;
 		wall(x, data);
 		x++;
 	}

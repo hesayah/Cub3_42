@@ -95,10 +95,12 @@ static void			brain_move(int keycode, t_data *data)
 
 int		action_key(int keycode, t_data *data)
 {
+	printf("keycode == [%i]\n", keycode);
 	if (keycode == 65307)
 		close_window(data);
-	if (keycode == 100 || keycode == 97 || keycode == 119 || keycode == 115 ||
+	else if (keycode == 100 || keycode == 97 || keycode == 119 || keycode == 115 ||
 	keycode == 65361 || keycode == 65363)
 		brain_move(keycode, data);
+	render_next_frame(data);
 	return (0);
 }

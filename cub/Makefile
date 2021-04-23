@@ -40,7 +40,7 @@ LIB = libs/libft/libft.a libs/mlx/libmlx.a
 
 OBJ = $(SRCS:.c=.o)
 
-GCC = gcc
+GCC = clang -g
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -49,11 +49,11 @@ MLX = -Llibs/mlx -lmlx -lXext -lX11 -lm
 all: $(NAME)
 $(NAME):${OBJ}
 	@echo "\033[32m[Compile Lib...]"
-	@$(MAKE) -C $ $(LIBFT_PATH)
+	#@$(MAKE) -C $ $(LIBFT_PATH)
 	@echo "\033[32m[Compile mlx...]"
-	@$(MAKE) -C $ $(MLX_PATH)
+	#@$(MAKE) -C $ $(MLX_PATH)
 	@echo "\033[32m[Compile CUB3D...]"
-	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(INCLUDE) $(LIB) $(MLX)
+	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"
 
 clean:
@@ -61,8 +61,8 @@ clean:
 	@echo "\033[32m[Clean-UP DONE]"
 	
 fclean: clean
-	@$(MAKE) -C $ $(LIBFT_PATH) fclean
-	@$(MAKE) -C $ $(MLX_PATH) clean
+	#@$(MAKE) -C $ $(LIBFT_PATH) fclean
+	#@$(MAKE) -C $ $(MLX_PATH) clean
 	@rm -rf $(NAME)
 	@echo "\033[32m[Clean-UP DONE]"
 
