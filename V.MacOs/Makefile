@@ -6,7 +6,7 @@
 #    By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/23 02:32:15 by hedi             ###   ########.fr        #
+#    Updated: 2021/04/23 02:34:19 by hedi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ LIB = libs/libft/libft.a libs/mlx/libmlx.a
 
 OBJ = $(SRCS:.c=.o)
 
-GCC = clang -g
+GCC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-MLX = -Llibs/mlx -lmlx -lXext -lX11 -lm
+MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 $(NAME):${OBJ}
