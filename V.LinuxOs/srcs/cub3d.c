@@ -16,7 +16,7 @@ int			close_window(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
-	clean_up(5, data);
+	clean_up(2, data);
 	exit(0);
 	return (0);
 }
@@ -30,7 +30,7 @@ void		loop_hook(t_data *data)
 	&data->line_length, &data->endian);
 	mlx_hook(data->win, 2, 1L << 0, action_key, data);
 	mlx_hook(data->win, 33, 1L << 17, close_window, data);
-	mlx_loop_hook(data->mlx, render_next_frame, data);
+	//mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_loop(data->mlx);
 }
 
@@ -66,17 +66,10 @@ int			brain(int argc, char **argv, t_data *data)
 {
 	init_data(data);
 	pars_brain(argv[1], data);
-	/*if (data->err != 0)
-	{
-		clean_up(2, data);
-		ft_putstr_fd("ERROR : PARSING FAIL ==> CLEAN UP\n", 0);
-		return (0);
-	}*/
 	if (!(load_xpm(data)))
-		return (0);
-	/*if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
-		return (2);*/
-	//clean_up(3, data);
+		return (clean_up(2, data));
+	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
+		return (2);
 	return (1);
 }
 

@@ -35,16 +35,31 @@ static	int		check_map_space(t_data *data)
 	int y;
 
 	y = 0;
-	while (y++ < data->maps.m_y - 2)
+	x = 0;
+	while (data->map[y])
 	{
-		x = 0;
 		if (data->map[y][x] == '0')
 			return (0);
-		while (x++ < data->maps.m_x - 2)
+		y++;
+	}
+	y = 0;
+	while (data->map[y][x] != '\0')
+	{
+		if (data->map[y][x] == '0')
+			return (0);
+		x++;
+	}
+	y = 1;
+	while (y < data->maps.m_y - 1)
+	{
+		x = 1;
+		while (x < data->maps.m_x - 1)
 		{
 			if (!(check_map_space_two(x, y, data)))
 				return (0);
+			x++;
 		}
+		y++;
 	}
 	return (1);
 }
@@ -86,7 +101,7 @@ void			ft_get_map(int index, t_data *data)
 		index++;
 	}
 	if (!(data->map = (char**)malloc(sizeof(char*) *
-	(data->maps.m_y + 1))))
+	(data->maps.m_y + 2))))
 		return (exit_error(-1, data));
 	while (data->tab[index + i] && i < data->maps.m_y)
 	{

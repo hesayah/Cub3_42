@@ -24,12 +24,21 @@ int clean_up(int code, t_data *data)
     }
     if (code >= 2)
     {
-        ft_free(data->map);
-        //free_xpm(data);
+        free_xpm(data);
+        if (data->map)
+            ft_free(data->map);;
         if (data->sprite)
             free(data->sprite);
-        /*if (data->maps.n_srt > 0)
-            free(data->sprite);*/
+        if (data->tex.xpm[0])
+            mlx_destroy_image(data->mlx, data->tex.xpm[0]);
+        if (data->tex.xpm[1])
+            mlx_destroy_image(data->mlx, data->tex.xpm[1]);
+        if (data->tex.xpm[2])
+            mlx_destroy_image(data->mlx, data->tex.xpm[2]);
+        if (data->tex.xpm[3])
+            mlx_destroy_image(data->mlx, data->tex.xpm[3]);
+        if (data->tex.xpm[4])
+            mlx_destroy_image(data->mlx, data->tex.xpm[4]);
     }
     ft_free(data->tab);
     mlx_destroy_display(data->mlx);

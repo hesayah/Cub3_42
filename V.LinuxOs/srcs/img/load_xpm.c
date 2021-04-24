@@ -67,12 +67,12 @@ void		free_xpm(t_data *data)
 	int i;
 
 	i = 0;
-	printf("entre ici !!");
-	//while (i < 5)
-	//{
-		//mlx_destroy_image(data->mlx, data->tex.xpm[i]);
-	//	i++;
-	//}
+	while (i < 5)
+	{
+		if (data->tex.tex[i])
+			free(data->tex.tex[i]);
+		i++;
+	}
 }
 
 /*int		load_xpm(t_data *data)

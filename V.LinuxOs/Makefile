@@ -42,16 +42,16 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3 -ggdb3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-std=c11 -O3 -g3 -ggdb3 -fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 
 all: $(NAME)
 $(NAME):${OBJ}
 	@echo "\033[32m[Compile Lib...]"
-	@$(MAKE) -C $ $(LIBFT_PATH)
+	#@$(MAKE) -C $ $(LIBFT_PATH)
 	@echo "\033[32m[Compile mlx...]"
-	@$(MAKE) -C $ $(MLX_PATH)
+	#@$(MAKE) -C $ $(MLX_PATH)
 	@echo "\033[32m[Compile CUB3D...]"
 	@$(GCC) -o $(NAME) ${OBJ} $(FLAGS) $(LIB) $(MLX)
 	@echo "\033[32m[JOB DONE ! YOU CAN RUN THE GAME :D]"

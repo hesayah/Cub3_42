@@ -66,6 +66,7 @@ int			get_nb(char *file)
 	}
 	free(line);
 	close(fd);
+	i++;
 	return (i);
 }
 
