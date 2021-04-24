@@ -14,6 +14,7 @@
 
 void	init_data(t_data *data)
 {
+	data->mlx = mlx_init();
 	data->w_h = -1;
 	data->w_w = -1;
 	data->err = 0;

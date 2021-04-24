@@ -80,7 +80,6 @@ int			main(int argc, char **argv)
 
 	if (argc > 1 && ft_check_ext(argv[1], &data) == 1)
 	{
-		data.mlx = mlx_init();
 		res = brain(argc, argv, &data);
 		if (res == 1)
 			loop_hook(&data);
