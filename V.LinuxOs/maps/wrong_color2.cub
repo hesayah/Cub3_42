@@ -14,9 +14,9 @@ WE srcs/img/we.xpm
 EA srcs/img/ea.xpm
 
 
-S srcs/img/srt.xpm
+S 56,10,30
 
-F  56,10,30
+F  srcs/img/srt.xpm
 
 
 C  248,142,148
