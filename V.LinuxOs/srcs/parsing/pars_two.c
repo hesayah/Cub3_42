@@ -106,9 +106,9 @@ int			pars_value_line(t_data *data)
 	}
 	check_value(data);
 	if (data->err == -1)
-		return (clean_up(1, data));
+		return (clean_up(data));
 	ft_get_map(i, data);
 	if (data->err == -2)
-		return (clean_up(2, data));
+		return (clean_up(data));
 	return (1);
 }

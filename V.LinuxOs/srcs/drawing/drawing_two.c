@@ -12,6 +12,13 @@
 
 #include "../../cub3d.h"
 
+unsigned long ft_rgb(int r, int g, int b)
+{   
+	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
+		return ((int)(-1));
+	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
+
 void 			draw_player(t_data *data)
 {
 	int x;
@@ -71,34 +78,6 @@ void            draw_map(t_data *data)
 		}
 	}
 }
-
-void	draw_sprite(double *buff, t_data *data)
-{
-	int y;
-	int x;
-
-	y = 0;
-	x = data->srt.draw_sx;
-	while (x < data->srt.draw_ex)
-	{
-		data->srt.srt_x = (int)(256 * (x - (-data->srt.srt_w / 2 + data->srt.srt_pos_x)) * 528 / data->srt.srt_w) / 256;
-		if (data->srt.tr_y > 0 && x > 0 && x < data->w_w && data->srt.tr_y < buff[x])
-		{
-			y = data->srt.draw_sy + 2;
-			while  (y < data->srt.draw_ey)
-			{
-				data->srt.pixel = (y) * 256 - data->w_h * 128 + data->srt.srt_h * 128;
-        		data->srt.srt_y  = ((data->srt.pixel * data->t[4].img_height) / data->srt.srt_h) / 256;
-        		data->rgb.color = data->t[4].addr[data->t[4].img_width * data->srt.srt_y + data->srt.srt_x];
-           		if ((data->rgb.color  & 0x00FFFFFF) != 0)
-			   		my_mlx_pixel_put(x, y,  data->rgb.color, data);
-				y++;
-			}
-		}
-		x++;
-	}
-}
-
 
 int		render_next_frame(t_data *data)
 {

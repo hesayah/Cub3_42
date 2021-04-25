@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-int clean_up(int code, t_data *data)
+int clean_up(t_data *data)
 {
     if (data->tab)
         ft_free(data->tab);

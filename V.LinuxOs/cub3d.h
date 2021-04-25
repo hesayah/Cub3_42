@@ -191,6 +191,6 @@ void				save(t_data *data);
 void				save_frame(t_data *data);
 void				code_err(int code);
 void				exit_error(int code, t_data *data);
-int					clean_up(int code, t_data *data);
+int					clean_up(t_data *data);
 
 #endif

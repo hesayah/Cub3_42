@@ -47,7 +47,7 @@ int			close_window(t_data *data)
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
 	ft_debug(data);
-	clean_up(2, data);
+	clean_up(data);
 	return (0);
 }
 
@@ -97,7 +97,7 @@ int			brain(int argc, char **argv, t_data *data)
 	init_data(data);
 	pars_brain(argv[1], data);
 	if (!(load_xpm(data)))
-		return (clean_up(2, data));
+		return (clean_up(data));
 	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
 		return (2);
 	return (1);
