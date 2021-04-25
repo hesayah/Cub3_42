@@ -59,7 +59,7 @@ static	void	exit_error_two(int code, t_data *data)
 	if (code == 5)
 		ft_putstr_fd("ERROR : PARSING CHECK COLORS LINES\n", 0);
 	if (code == 6)
-		ft_putstr_fd("ERROR : PARSING  RES < SIZE_MIN || RES > SIZE_MAX\n", 0);
+		ft_putstr_fd("ERROR : PARSING  RES ! RESIZE WIN ==> OK\n", 0);
 	if (code == 7)
 		ft_putstr_fd("ERROR : PARSING PATH TEXTURES MISSING\n", 0);
 	if (code == 8)

@@ -84,7 +84,6 @@ int			main(int argc, char **argv)
 			ft_putstr_fd("ERROR : CONNEXTION TO MLX FAILED!\n", 0);
 			return (0);
 		}
-		mlx_get_screen_size(data.mlx, &data.w_max, &data.h_max);
 		res = brain(argc, argv, &data);
 		if (res == 1)
 			loop_hook(&data);

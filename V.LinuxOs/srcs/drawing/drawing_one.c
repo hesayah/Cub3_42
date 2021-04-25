@@ -47,9 +47,9 @@ void			draw_c_wall(int x, int index, t_data *data)
 	texture_calc(x, index, data);
 	while (y < data->w_h)
 	{
-		if (y < data->cast.start)
+		if (y <= data->cast.start)
 			my_mlx_pixel_put(x, y, data->tex.ceiling, data);
-		else if (y + 1 > data->cast.start && y + 1 < data->cast.end)
+		else if (y > data->cast.start && y <= data->cast.end)
 		{
 			data->tex.tex_p += data->tex.step;
 			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;

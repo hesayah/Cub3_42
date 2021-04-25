@@ -148,7 +148,9 @@ typedef struct		s_data
 	int				line_length;
 	int				endian;
 	int				w_w;
+	int				w_max;
 	int				w_h;
+	int				h_max;
 	int				err;
 	char			**tab;
 	char			**map;

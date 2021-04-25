@@ -33,13 +33,13 @@ OBJ = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(GCC) $(FLAGS) $(INCLUDE) -c $(SRCS) 
-	ar -rc $(NAME) $^
-	ranlib $(NAME)
+	@$(GCC) $(FLAGS) -c $(SRCS) $(INCLUDE)
+	@ar -rc $(NAME) $^
+	@ranlib $(NAME)
 	@echo "\033[32m[Success :D !]"
 	
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)

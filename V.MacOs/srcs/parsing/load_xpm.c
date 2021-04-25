@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   load_xpm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 16:19:21 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 08:06:25 by hesayah          ###   ########.fr       */
+/*   Created: 2021/03/31 12:49:24 by hesayah           #+#    #+#             */
+/*   Updated: 2021/04/21 09:44:13 by hesayah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../cub3d.h"
 
-char	*ft_strdup(const char *str)
+int		load_xpm(t_data *data)
 {
-	int		i;
-	char	*dest;
+	int i;
 
 	i = 0;
-	while (str && str[i])
-		i++;
-	if (!(dest = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (str && str[i])
+	while (i < 5)
 	{
-		dest[i] = str[i];
+		if (!(data->t[i].img = mlx_xpm_file_to_image(data->mlx,
+		data->t[i].r_path, &data->t[i].img_width, &data->t[i].img_height)))
+		{
+			exit_error(11, data);
+			return (0);
+		}
+		(data->t[i].addr = (int*)mlx_get_data_addr(data->t[i].img,
+		&data->t[i].bits_per_pixel, &data->t[i].line_length,
+		&data->t[i].endian));
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (1);
 }

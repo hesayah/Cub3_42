@@ -17,15 +17,15 @@ static void	check_value(t_data *data)
 	if ((data->w_w < 300 || data->w_w > 2560)
 	|| (data->w_h < 300 || data->w_h > 1440))
 		exit_error(6, data);
-	if (data->tex.r_path[0] == NULL || data->tex.r_path[1] == NULL
-		|| data->tex.r_path[2] == NULL || data->tex.r_path[3]== NULL
-		|| data->tex.r_path[4] == NULL)
+	if (data->t[0].r_path == NULL || data->t[1].r_path == NULL
+		|| data->t[2].r_path == NULL || data->t[3].r_path == NULL
+		|| data->t[4].r_path == NULL)
 		exit_error(7, data);
 	if (data->tex.floor == -1 || data->tex.ceiling == -1)
 		exit_error(8, data);
 }
 
-static void get_clg_flr_value_2(char *str, int i, t_data *data)
+static void	get_clg_flr_value_2(char *str, int i, t_data *data)
 {
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		i++;
@@ -40,12 +40,12 @@ static void get_clg_flr_value_2(char *str, int i, t_data *data)
 		i++;
 	}
 	if (ft_strncmp(str, "C ", 2) == 0)
-		data->tex.ceiling = ft_rgb(data->rgb.r,data->rgb.g,data->rgb.b);
+		data->tex.ceiling = ft_rgb(data->rgb.r, data->rgb.g, data->rgb.b);
 	else if (ft_strncmp(str, "F ", 2) == 0)
-		data->tex.floor = ft_rgb(data->rgb.r,data->rgb.g,data->rgb.b);
+		data->tex.floor = ft_rgb(data->rgb.r, data->rgb.g, data->rgb.b);
 }
 
-static void get_clg_flr_value(char *str, t_data *data)
+static void	get_clg_flr_value(char *str, t_data *data)
 {
 	int i;
 
@@ -66,7 +66,7 @@ static void get_clg_flr_value(char *str, t_data *data)
 	get_clg_flr_value_2(str, i, data);
 }
 
-int		scan_id(char *str, t_data *data)
+int			scan_id(char *str, t_data *data)
 {
 	if (ft_strncmp(str, "R ", 2) == 0)
 		get_res(str, data);
@@ -80,15 +80,15 @@ int		scan_id(char *str, t_data *data)
 		get_path_tex(3, str, data);
 	else if (ft_strncmp(str, "S ", 2) == 0)
 		get_path_tex(4, str, data);
-	else if(ft_strncmp(str, "C " , 2) == 0 ||
-	ft_strncmp(str,"F " , 2) == 0)
+	else if (ft_strncmp(str, "C ", 2) == 0 ||
+	ft_strncmp(str, "F ", 2) == 0)
 		get_clg_flr_value(str, data);
 	else
 		return (0);
 	return (1);
 }
 
-int pars_value_line(t_data *data)
+int			pars_value_line(t_data *data)
 {
 	int i;
 
@@ -105,11 +105,10 @@ int pars_value_line(t_data *data)
 		i++;
 	}
 	check_value(data);
-	//printf("err = [%i]\n", data->err);
 	if (data->err == -1)
-		return (clean_up(1, data));
+		return (clean_up(data));
 	ft_get_map(i, data);
 	if (data->err == -2)
-		return (clean_up(2, data));
+		return (clean_up(data));
 	return (1);
 }

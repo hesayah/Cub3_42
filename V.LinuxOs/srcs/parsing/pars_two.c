@@ -14,9 +14,13 @@
 
 static void	check_value(t_data *data)
 {
-	if ((data->w_w < 300 || data->w_w > 2560)
-	|| (data->w_h < 300 || data->w_h > 1440))
+	if ((data->w_w < 50 || data->w_w > data->w_max)
+	|| (data->w_h < 50 || data->w_h > data->h_max))
+	{
+		data->w_w = data->w_max;
+		data->w_h = data->h_max;
 		exit_error(6, data);
+	}
 	if (data->t[0].r_path == NULL || data->t[1].r_path == NULL
 		|| data->t[2].r_path == NULL || data->t[3].r_path == NULL
 		|| data->t[4].r_path == NULL)

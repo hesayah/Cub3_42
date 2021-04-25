@@ -12,27 +12,61 @@
 
 #include "../../cub3d.h"
 
-static int	check_map_space(t_data *data)
+static	int		check_space_two(int x, int y, t_data *data)
+{
+	if (data->map[y][x] == '0')
+	{
+		if (data->map[y][x - 1] == ' ' || data->map[y][x + 1] == ' ' ||
+			data->map[y - 1][x] == ' ' || data->map[y + 1][x] == ' ')
+			return (0);
+	}
+	else if (data->map[y][x] == ' ')
+	{
+		if (data->map[y][x - 1] == '0' || data->map[y][x + 1] == '0' ||
+			data->map[y - 1][x] == '0' || data->map[y + 1][x] == '0')
+			return (0);
+	}
+	return (1);
+}
+
+static	int		check_space_one(t_data *data)
 {
 	int x;
 	int y;
 
+	x = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		if (data->map[y][x] == '0')
+			return (0);
+		y++;
+	}
+	y = 0;
+	while (data->map[y][x] != '\0')
+	{
+		if (data->map[y][x] == '0')
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
+static	int		check_map_space(t_data *data)
+{
+	int x;
+	int y;
+
+	if (!(check_space_one(data)))
+		return (0);
 	y = 1;
 	while (y < data->maps.m_y - 1)
 	{
 		x = 1;
 		while (x < data->maps.m_x - 1)
 		{
-			if (data->map[y][x] == '0')
-			{
-				if (data->map[y][x-1] == ' ' || data->map[y][x+1] == ' ' || data->map[y-1][x] == ' ' || data->map[y+1][x] == ' ')
-					return (0);
-			}
-			else if (data->map[y][x] == ' ')
-			{
-				if (data->map[y][x-1] == '0' || data->map[y][x+1] == '0' || data->map[y-1][x] == '0' || data->map[y+1][x] == '0')
-					return (0);
-			}
+			if (!(check_space_two(x, y, data)))
+				return (0);
 			x++;
 		}
 		y++;
@@ -40,15 +74,15 @@ static int	check_map_space(t_data *data)
 	return (1);
 }
 
-
-static void ft_get_map_2(char *str, int index, t_data *data)
+static	void	ft_get_map_2(char *str, int index, t_data *data)
 {
 	int i;
 
 	i = 0;
-	data->maps.m_x++; 
-	data->map[index] = (char*)malloc(sizeof(char) * data->maps.m_x + 1);
-	while(str[i])
+	if (!(data->map[index] = (char*)malloc(sizeof(char) *
+	(data->maps.m_x + 1))))
+		return (exit_error(-1, data));
+	while (str[i])
 	{
 		data->map[index][i] = str[i];
 		i++;
@@ -60,31 +94,33 @@ static void ft_get_map_2(char *str, int index, t_data *data)
 			data->map[index][i] = ' ';
 			i++;
 		}
+		data->map[index][i] = '\0';
 	}
-	data->map[index][i] = '\0';
 }
 
-void	ft_get_map(int index, t_data *data)
+void			ft_get_map(int index, t_data *data)
 {
 	int i;
 
 	i = 0;
 	while (c_in_str(data->tab[index][0], " 012") == 0)
 	{
-		/*if (data->tab[index][0] != 0)	
-			return ;*/
+		if (data->tab[index][0] != 0)
+			return ;
 		index++;
 	}
-	data->map = (char**)malloc(sizeof(char*) * (data->maps.m_y + 1));
+	if (!(data->map = (char**)malloc(sizeof(char*) *
+	(data->maps.m_y + 2))))
+		return (exit_error(-1, data));
+	data->maps.m_x++;
 	while (data->tab[index + i] && i < data->maps.m_y)
 	{
 		ft_get_map_2(data->tab[index + i], i, data);
 		i++;
 	}
 	data->map[i] = NULL;
-	if (!check_map_space(data))
-		return ;
+	if (!(check_map_space(data)))
+		return (exit_error(9, data));
 	init_map_and_cam(data);
 	get_first_player_pos(data);
-	printf("GET MAP OK \n");
 }
