@@ -131,6 +131,10 @@ typedef struct		s_maps
 	int				map_y;
 	int				spown;
 	int				n_srt;
+	int				px;
+	int				py;
+	int				x;
+	int				y;
 	double			r_map;
 }					t_maps;
 

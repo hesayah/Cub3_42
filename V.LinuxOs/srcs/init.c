@@ -62,6 +62,10 @@ void			init_map_and_cam(t_data *data)
 	data->maps.map_y = (int)(data->maps.map_h) / (data->maps.m_y);
 	data->cam.speed = 0.15;
 	data->cam.rot_speed = 0.1;
+	data->maps.px = 0;
+	data->maps.py = 0;
+	data->maps.x = 0;
+	data->maps.y = 0;
 }
 
 void			init_data_sprite(t_data *data)
