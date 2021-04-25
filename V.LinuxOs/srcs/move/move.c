@@ -70,7 +70,7 @@ static	void	move_one(int keycode, t_data *data)
 	+ data->cam.plane_y * cos(data->cam.rot_speed);
 }
 
-static void			brain_move(int keycode, t_data *data)
+static	void	brain_move(int keycode, t_data *data)
 {
 	if (keycode == 65361)
 	{
@@ -93,9 +93,8 @@ static void			brain_move(int keycode, t_data *data)
 		move_three(keycode, data);
 }
 
-int		action_key(int keycode, t_data *data)
+int				action_key(int keycode, t_data *data)
 {
-	printf("keycode == [%i]\n", keycode);
 	if (keycode == 65307)
 		close_window(data);
 	else if (keycode == 100 || keycode == 113 || keycode == 122 ||

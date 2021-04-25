@@ -73,7 +73,7 @@ typedef struct		s_tex
 	double			wallx;
 }					t_tex;
 
-typedef	struct		t_texture
+typedef	struct		s_texture
 {
 	char			*r_path;
 	int				bits_per_pixel;
@@ -83,7 +83,6 @@ typedef	struct		t_texture
 	int				img_height;
 	void			*img;
 	int				*addr;
-
 }					t_texture;
 
 typedef struct		s_srt
@@ -149,7 +148,7 @@ typedef struct		s_data
 	int				err;
 	char			**tab;
 	char			**map;
-	t_maps			maps;	
+	t_maps			maps;
 	t_cast			cast;
 	t_cam			cam;
 	t_tex			tex;

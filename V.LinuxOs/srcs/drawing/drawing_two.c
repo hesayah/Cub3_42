@@ -12,14 +12,14 @@
 
 #include "../../cub3d.h"
 
-unsigned long ft_rgb(int r, int g, int b)
-{   
+unsigned	long	ft_rgb(int r, int g, int b)
+{
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return ((int)(-1));
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-void 			draw_player(t_data *data)
+void				draw_player(t_data *data)
 {
 	int x;
 	int y;
@@ -28,12 +28,12 @@ void 			draw_player(t_data *data)
 	while (y < data->maps.map_h)
 	{
 		x = 0;
-		while(x < data->maps.map_w)
+		while (x < data->maps.map_w)
 		{
-			if((y >= (data->cam.posy * data->maps.map_y) - (data->maps.map_y / 5)
-			&& y <= ((data->cam.posy * data->maps.map_y) + (data->maps.map_y / 5)))
-			&& (x >= (data->cam.posx * data->maps.map_x) - (data->maps.map_x / 5)
-			&& x <= ((data->cam.posx * data->maps.map_x) + (data->maps.map_x / 5))))
+			if ((y >= data->cam.posy * data->maps.map_y - data->maps.map_y / 5
+			&& y <= data->cam.posy * data->maps.map_y + data->maps.map_y / 5)
+			&& (x >= data->cam.posx * data->maps.map_x - data->maps.map_x / 5
+			&& x <= data->cam.posx * data->maps.map_x + data->maps.map_x / 5))
 				my_mlx_pixel_put(x, y, 0x696969, data);
 			x++;
 		}
@@ -41,7 +41,13 @@ void 			draw_player(t_data *data)
 	}
 }
 
-void            draw_map(t_data *data)
+/*static	void		draw_map_two(int x, int y, int px, int py, t_data *data)
+*{
+*
+*}
+*/
+
+void				draw_map(t_data *data)
 {
 	int x;
 	int y;
@@ -49,11 +55,11 @@ void            draw_map(t_data *data)
 	int py;
 
 	y = 1;
-	px = py = 0;
-	int i = 0;
+	py = 0;
 	while (py < data->maps.m_y)
 	{
 		x = 1;
+		px = 0;
 		while (px < data->maps.m_x && x < data->maps.map_w)
 		{
 			if (x % (int)data->maps.map_x == 0)
@@ -69,8 +75,6 @@ void            draw_map(t_data *data)
 				my_mlx_pixel_put(x, y, 0x99D8D89, data);
 			x++;
 		}
-		y++;
-		px = 0;
 		if ((y % (int)data->maps.map_y) == 0)
 		{
 			py++;
@@ -79,7 +83,7 @@ void            draw_map(t_data *data)
 	}
 }
 
-int		render_next_frame(t_data *data)
+int					render_next_frame(t_data *data)
 {
 	double buff[data->w_w];
 

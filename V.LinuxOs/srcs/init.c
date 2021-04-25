@@ -31,7 +31,7 @@ static	void	init_two(t_data *data)
 	data->t[4].addr = NULL;
 }
 
-void	init_data(t_data *data)
+void			init_data(t_data *data)
 {
 	data->w_h = -1;
 	data->w_w = -1;
@@ -53,7 +53,7 @@ void	init_data(t_data *data)
 	init_two(data);
 }
 
-void	init_map_and_cam(t_data *data)
+void			init_map_and_cam(t_data *data)
 {
 	data->maps.r_map = 0.25;
 	data->maps.map_w = (int)(data->w_w * data->maps.r_map);
@@ -64,7 +64,7 @@ void	init_map_and_cam(t_data *data)
 	data->cam.rot_speed = 0.1;
 }
 
-void	init_data_sprite(t_data *data)
+void			init_data_sprite(t_data *data)
 {
 	data->srt.m_inv = 0;
 	data->srt.tr_x = 0;
@@ -80,5 +80,5 @@ void	init_data_sprite(t_data *data)
 	data->srt.draw_sy = 0;
 	data->srt.draw_ey = 0;
 	data->srt.pixel = 0;
-    data->srt.srt_y  = 0;
+	data->srt.srt_y = 0;
 }

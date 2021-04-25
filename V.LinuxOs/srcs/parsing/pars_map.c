@@ -12,7 +12,7 @@
 
 #include "../../cub3d.h"
 
-static	int		check_map_space_two(int x, int y, t_data *data)
+static	int		check_space_two(int x, int y, t_data *data)
 {
 	if (data->map[y][x] == '0')
 	{
@@ -29,13 +29,13 @@ static	int		check_map_space_two(int x, int y, t_data *data)
 	return (1);
 }
 
-static	int		check_map_space(t_data *data)
+static	int		check_space_one(t_data *data)
 {
 	int x;
 	int y;
 
-	y = 0;
 	x = 0;
+	y = 0;
 	while (data->map[y])
 	{
 		if (data->map[y][x] == '0')
@@ -49,13 +49,23 @@ static	int		check_map_space(t_data *data)
 			return (0);
 		x++;
 	}
+	return (1);
+}
+
+static	int		check_map_space(t_data *data)
+{
+	int x;
+	int y;
+
+	if (!(check_space_one(data)))
+		return (0);
 	y = 1;
 	while (y < data->maps.m_y - 1)
 	{
 		x = 1;
 		while (x < data->maps.m_x - 1)
 		{
-			if (!(check_map_space_two(x, y, data)))
+			if (!(check_space_two(x, y, data)))
 				return (0);
 			x++;
 		}
