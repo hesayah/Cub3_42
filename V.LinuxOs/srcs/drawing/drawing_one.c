@@ -60,9 +60,7 @@ void	        draw_c_wall(int x, int index, t_data *data)
 		{
 			data->tex.tex_p += data->tex.step;
 			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;
-			//data->rgb.color = data->t[4].addr[data->t[4].img_width * data->srt.srt_y + data->srt.srt_x];
 			my_mlx_pixel_put(x, y,  data->t[index].addr[data->t[index].img_height * data->tex.tex_y + data->tex.tex_x], data);
-			//my_mlx_pixel_put(x, y,  0, data);
 		}
 		else
 			my_mlx_pixel_put(x, y, data->tex.floor, data);

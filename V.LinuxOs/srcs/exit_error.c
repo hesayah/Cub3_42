@@ -80,7 +80,7 @@ void    exit_error(int code, t_data *data)
     if (code == 9)
         ft_putstr_fd("ERROR : PARSING MAP OPEN\n", 0);
     if (code == 10)
-        ft_putstr_fd("ERROR : PARSING ERROR SPOWN\n", 0);
+        ft_putstr_fd("ERROR : PARSING ERROR MAP\n", 0);
     if (code == 11)
         ft_putstr_fd("ERROR : UPLOADING TEXTURES FAILS\n", 0);
     if (code <= 8)

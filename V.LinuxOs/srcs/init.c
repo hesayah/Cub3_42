@@ -38,6 +38,7 @@ void	init_data(t_data *data)
 	data->err = 0;
 	data->tab = NULL;
 	data->map = NULL;
+	data->sprite = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
 	data->tex.tex_y = 0;
