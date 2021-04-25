@@ -6,7 +6,7 @@
 #    By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/23 02:34:19 by hedi             ###   ########.fr        #
+#    Updated: 2021/04/26 00:06:20 by hedi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDE = cub3d.h libs/libft/libft.h libs/gnl/get_next_line.h
 
 SRCS =	libs/gnl/get_next_line_utils.c \
 		libs/gnl/get_next_line.c \
-		cub3d.c \
+		srcs/cub3d.c \
 		srcs/init.c \
 		srcs/exit_error.c \
 		srcs/parsing/pars_brain.c \
@@ -24,13 +24,13 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/parsing/pars_three.c \
 		srcs/parsing/pars_map.c \
 		srcs/parsing/pars_player.c \
+		srcs/parsing/load_xpm.c \
 		srcs/sprite/sprite.c \
-		srcs/img/load_xpm.c \
 		srcs/move/move.c \
 		srcs/ray_casting/ray_casting.c \
 		srcs/drawing/drawing_one.c \
 		srcs/drawing/drawing_two.c \
-		srcs/save.c \
+		srcs/save.c
 		
 LIBFT_PATH = libs/libft
 
@@ -42,7 +42,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3  -ggdb3 #fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -framework OpenGL -framework AppKit
 

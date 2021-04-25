@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+         #
+#    By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 12:59:53 by hesayah           #+#    #+#              #
-#    Updated: 2021/04/21 11:21:29 by hesayah          ###   ########.fr        #
+#    Updated: 2021/04/26 00:06:28 by hedi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJ = $(SRCS:.c=.o)
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3  -ggdb3 #<-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -std=c11 -O3 -g3  -ggdb3 #fsanitize=address
 
 MLX = -Llibs/mlx -lmlx -lXext -lX11 -lbsd -lm
 

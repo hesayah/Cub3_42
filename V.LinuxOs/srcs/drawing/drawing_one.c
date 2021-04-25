@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_one.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:19:20 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 09:13:37 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/26 00:20:33 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			draw_c_wall(int x, int index, t_data *data)
 	texture_calc(x, index, data);
 	while (y < data->w_h)
 	{
-		if (y <= data->cast.start)
+		if (y < data->cast.start)
 			my_mlx_pixel_put(x, y, data->tex.ceiling, data);
 		else if (y > data->cast.start && y <= data->cast.end)
 		{

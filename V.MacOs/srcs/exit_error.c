@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hesayah <hesayah@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:35:44 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/21 11:31:54 by hesayah          ###   ########.fr       */
+/*   Updated: 2021/04/26 00:28:41 by hedi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static	void	clean_up_two(t_data *data)
 		mlx_destroy_image(data->mlx, data->t[3].img);
 	if (data->t[4].img)
 		mlx_destroy_image(data->mlx, data->t[4].img);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
 }
 
 int				clean_up(t_data *data)
