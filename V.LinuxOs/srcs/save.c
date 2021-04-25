@@ -80,10 +80,9 @@ void	save_frame(t_data *data)
 {
 	double buff[data->w_w];
 
-	action_key(0, data);
 	ray_casting(buff, data);
 	if (data->srt.hit == 1)
-		brain_sprite(data->tex.tex[4], buff,  data);
+		brain_sprite(buff,  data);
 	draw_map(data);
 	draw_player(data);
 }

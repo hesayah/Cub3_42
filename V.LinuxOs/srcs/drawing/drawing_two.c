@@ -72,7 +72,7 @@ void            draw_map(t_data *data)
 	}
 }
 
-void	draw_sprite(int *srt, double *buff, t_data *data)
+void	draw_sprite(double *buff, t_data *data)
 {
 	int y;
 	int x;
@@ -88,10 +88,10 @@ void	draw_sprite(int *srt, double *buff, t_data *data)
 			while  (y < data->srt.draw_ey)
 			{
 				data->srt.pixel = (y) * 256 - data->w_h * 128 + data->srt.srt_h * 128;
-        		data->srt.srt_y  = ((data->srt.pixel * 797) / data->srt.srt_h) / 256;
-        		data->srt.color = srt[528* data->srt.srt_y + data->srt.srt_x];
-           		if ((data->srt.color  & 0x00FFFFFF) != 0)
-			   		my_mlx_pixel_put(x, y,  data->srt.color, data);
+        		data->srt.srt_y  = ((data->srt.pixel * data->t[4].img_height) / data->srt.srt_h) / 256;
+        		data->rgb.color = data->t[4].addr[data->t[4].img_width * data->srt.srt_y + data->srt.srt_x];
+           		if ((data->rgb.color  & 0x00FFFFFF) != 0)
+			   		my_mlx_pixel_put(x, y,  data->rgb.color, data);
 				y++;
 			}
 		}
@@ -106,7 +106,7 @@ int		render_next_frame(t_data *data)
 
 	ray_casting(buff, data);
 	if (data->srt.hit == 1)
-		brain_sprite(data->tex.tex[4], buff,  data);
+		brain_sprite(buff, data);
 	draw_map(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

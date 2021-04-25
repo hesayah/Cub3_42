@@ -44,12 +44,47 @@ typedef struct		s_cast
 	double			*buff;
 }					t_cast;
 
-typedef	struct		s_sprite
+typedef struct		s_cam
 {
-	double			x;
-	double			y;
-	double			dist;
-}					t_sprite;
+	double			posx;
+	double			posy;
+	double			camera_x;
+	double			dir_eye;
+	double			speed;
+	double			rot_speed;
+	double			old_plane_x;
+	double			plane_x;
+	double			plane_y;
+	double			old_dir_x;
+	double			dir_x;
+	double			dir_y;
+}					t_cam;
+
+typedef struct		s_tex
+{
+	int				tex_y;
+	int				tex_x;
+	int				txt_w;
+	int				txt_h;
+	unsigned long	floor;
+	unsigned long	ceiling;
+	double			step;
+	double			tex_p;
+	double			wallx;
+}					t_tex;
+
+typedef	struct		t_texture
+{
+	char			*r_path;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				img_width;
+	int				img_height;
+	void			*img;
+	int				*addr;
+
+}					t_texture;
 
 typedef struct		s_srt
 {
@@ -70,8 +105,14 @@ typedef struct		s_srt
 	int				srt_x;
 	int				srt_y;
 	int				pixel;
-	unsigned long	color;
 }					t_srt;
+
+typedef	struct		s_sprite
+{
+	double			x;
+	double			y;
+	double			dist;
+}					t_sprite;
 
 typedef	struct		s_rgb
 {
@@ -94,43 +135,6 @@ typedef struct		s_maps
 	double			r_map;
 }					t_maps;
 
-typedef struct		s_cam
-{
-	double			posx;
-	double			posy;
-	double			camera_x;
-	double			dir_eye;
-	double			speed;
-	double			rot_speed;
-	double			old_plane_x;
-	double			plane_x;
-	double			plane_y;
-	double			old_dir_x;
-	double			dir_x;
-	double			dir_y;
-}					t_cam;
-
-typedef struct		s_tex
-{
-	char			*r_path[5];
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	int				img_width;
-	int				img_height;
-	void			*xpm[5];
-	void			*tex[5];
-	int				tex_y;
-	int				tex_x;
-	int				txt_w;
-	int				txt_h;
-	unsigned long	floor;
-	unsigned long	ceiling;
-	double			step;
-	double			tex_p;
-	double			wallx;
-}					t_tex;
-
 typedef struct		s_data
 {
 	void			*mlx;
@@ -145,13 +149,14 @@ typedef struct		s_data
 	int				err;
 	char			**tab;
 	char			**map;
-	t_tex			tex;
-	t_rgb			rgb;
-	t_maps			maps;
+	t_maps			maps;	
+	t_cast			cast;
 	t_cam			cam;
+	t_tex			tex;
+	t_texture		t[5];
 	t_srt			srt;
 	t_sprite		*sprite;
-	t_cast			cast;
+	t_rgb			rgb;
 }					t_data;
 
 void				loop_hook(t_data *data);
@@ -175,18 +180,17 @@ int					action_key(int keycode, t_data *data);
 int					render_next_frame(t_data *data);
 void				ray_casting(double *buff, t_data *data);
 void				my_mlx_pixel_put(int x, int y, int color, t_data *data);
-void				draw_c_wall(int x, int *txt, t_data *data);
+void				draw_c_wall(int x, int index, t_data *data);
 void				draw_map(t_data *data);
 void				draw_player(t_data *data);
 void				init_sprite(t_data *data);
-void				brain_sprite(int *srt, double *buff, t_data *data);
+void				brain_sprite(double *buff, t_data *data);
 void				init_data_sprite(t_data *data);
-void				draw_sprite(int *srt, double *buff, t_data *data);
+void				draw_sprite(double *buff, t_data *data);
 void				save(t_data *data);
 void				save_frame(t_data *data);
 void				code_err(int code);
 void				exit_error(int code, t_data *data);
 int					clean_up(int code, t_data *data);
-void				free_xpm(t_data *data);
 
 #endif

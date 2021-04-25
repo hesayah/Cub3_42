@@ -12,34 +12,37 @@
 
 #include "../cub3d.h"
 
+static	void	init_two(t_data *data)
+{
+	data->t[0].r_path = NULL;
+	data->t[1].r_path = NULL;
+	data->t[2].r_path = NULL;
+	data->t[3].r_path = NULL;
+	data->t[4].r_path = NULL;
+	data->t[0].img = NULL;
+	data->t[1].img = NULL;
+	data->t[2].img = NULL;
+	data->t[3].img = NULL;
+	data->t[4].img = NULL;
+	data->t[0].addr = NULL;
+	data->t[1].addr = NULL;
+	data->t[2].addr = NULL;
+	data->t[3].addr = NULL;
+	data->t[4].addr = NULL;
+}
+
 void	init_data(t_data *data)
 {
-	data->mlx = mlx_init();
 	data->w_h = -1;
 	data->w_w = -1;
 	data->err = 0;
 	data->tab = NULL;
 	data->map = NULL;
-	data->tex.r_path[0] = NULL;
-	data->tex.r_path[1] = NULL;
-	data->tex.r_path[2] = NULL;
-	data->tex.r_path[3] = NULL;
-	data->tex.r_path[4] = NULL;
-	data->tex.tex[0] = NULL;
-	data->tex.tex[1] = NULL;
-	data->tex.tex[2] = NULL;
-	data->tex.tex[3] = NULL;
-	data->tex.tex[4] = NULL;
-	data->tex.xpm[0] = NULL;
-	data->tex.xpm[1] = NULL;
-	data->tex.xpm[2] = NULL;
-	data->tex.xpm[3] = NULL;
-	data->tex.xpm[4] = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
 	data->maps.m_x = 0;
 	data->maps.m_y = 0;
-
+	init_two(data);
 }
 
 void	init_map_and_cam(t_data *data)
@@ -70,5 +73,4 @@ void	init_data_sprite(t_data *data)
 	data->srt.draw_ey = 0;
 	data->srt.pixel = 0;
     data->srt.srt_y  = 0;
-    data->srt.color = 0;
 }

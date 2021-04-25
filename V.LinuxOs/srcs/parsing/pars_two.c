@@ -17,9 +17,9 @@ static void	check_value(t_data *data)
 	if ((data->w_w < 300 || data->w_w > 2560)
 	|| (data->w_h < 300 || data->w_h > 1440))
 		exit_error(6, data);
-	if (data->tex.r_path[0] == NULL || data->tex.r_path[1] == NULL
-		|| data->tex.r_path[2] == NULL || data->tex.r_path[3] == NULL
-		|| data->tex.r_path[4] == NULL)
+	if (data->t[0].r_path == NULL || data->t[1].r_path == NULL
+		|| data->t[2].r_path == NULL || data->t[3].r_path == NULL
+		|| data->t[4].r_path == NULL)
 		exit_error(7, data);
 	if (data->tex.floor == -1 || data->tex.ceiling == -1)
 		exit_error(8, data);

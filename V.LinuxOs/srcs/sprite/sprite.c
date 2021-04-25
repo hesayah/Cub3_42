@@ -60,7 +60,7 @@ void			sprite_calc(int i, t_data *data)
 	data->srt.srt_w = abs((int)(data->w_h / data->srt.tr_y));
 }
 
-void			brain_sprite(int *srt, double *buff, t_data *data)
+void			brain_sprite(double *buff, t_data *data)
 {
 	int i;
 	int	y;
@@ -76,7 +76,7 @@ void			brain_sprite(int *srt, double *buff, t_data *data)
 		data->srt.draw_ex = (data->srt.srt_w / 2) + data->srt.srt_pos_x;
 		if (data->srt.draw_ex >= data->w_w)
 			data->srt.draw_ex = data->w_w - 1;
-		draw_sprite(srt, buff, data);
+		draw_sprite(buff, data);
 		i++;
 	}
 }

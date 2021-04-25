@@ -14,33 +14,32 @@
 
 int clean_up(int code, t_data *data)
 {
-    if (code >= 1)
-    {
-        free(data->tex.r_path[0]);
-        free(data->tex.r_path[1]);
-        free(data->tex.r_path[2]);
-        free(data->tex.r_path[3]);
-        free(data->tex.r_path[4]);
-    }
-    if (code >= 2)
-    {
-        free_xpm(data);
-        if (data->map)
-            ft_free(data->map);;
-        if (data->sprite)
-            free(data->sprite);
-        if (data->tex.xpm[0])
-            mlx_destroy_image(data->mlx, data->tex.xpm[0]);
-        if (data->tex.xpm[1])
-            mlx_destroy_image(data->mlx, data->tex.xpm[1]);
-        if (data->tex.xpm[2])
-            mlx_destroy_image(data->mlx, data->tex.xpm[2]);
-        if (data->tex.xpm[3])
-            mlx_destroy_image(data->mlx, data->tex.xpm[3]);
-        if (data->tex.xpm[4])
-            mlx_destroy_image(data->mlx, data->tex.xpm[4]);
-    }
-    ft_free(data->tab);
+    if (data->tab)
+        ft_free(data->tab);
+    if (data->t[0].r_path)
+        free(data->t[0].r_path);
+    if (data->t[1].r_path)
+        free(data->t[1].r_path);
+    if (data->t[2].r_path)
+        free(data->t[2].r_path);
+    if (data->t[3].r_path)
+        free(data->t[3].r_path);
+    if (data->t[4].r_path)
+        free(data->t[4].r_path);
+    if (data->map)
+        ft_free(data->map);;
+    if (data->sprite)
+        free(data->sprite);
+    if (data->t[0].img)
+        mlx_destroy_image(data->mlx, data->t[0].img);
+    if (data->t[1].img)
+        mlx_destroy_image(data->mlx, data->t[1].img);
+    if (data->t[2].img)
+        mlx_destroy_image(data->mlx, data->t[2].img);
+    if (data->t[3].img)
+        mlx_destroy_image(data->mlx, data->t[3].img);
+    if (data->t[4].img)
+        mlx_destroy_image(data->mlx, data->t[4].img);
     mlx_destroy_display(data->mlx);
     free(data->mlx);
     exit(0);

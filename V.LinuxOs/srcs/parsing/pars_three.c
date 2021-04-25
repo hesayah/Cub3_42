@@ -76,19 +76,19 @@ void	get_path_tex(int index, char *str, t_data *data)
 	int		fd;
 	char	*tmp;
 
-	if (data->tex.r_path[index] != NULL)
+	if (data->t[index].r_path != NULL)
 		return (exit_error(4, data));
 	i = 0;
 	while (str[i] && str[i] != ' ')
 		i++;
 	while (str[i] && str[i] == ' ')
 		i++;
-	data->tex.r_path[index] = ft_substr(str, i, ft_strlen(str) - i);
-	fd = open(data->tex.r_path[index], O_RDONLY);
+	data->t[index].r_path = ft_substr(str, i, ft_strlen(str) - i);
+	fd = open(data->t[index].r_path, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_putstr_fd("ERROR : [", 0);
-		ft_putstr_fd(data->tex.r_path[index], 0);
+		ft_putstr_fd(data->t[index].r_path, 0);
 		ft_putstr_fd("] : NOT FOUND\n", 0);
 		return (exit_error(3, data));
 	}

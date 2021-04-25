@@ -30,7 +30,7 @@ void		loop_hook(t_data *data)
 	&data->line_length, &data->endian);
 	mlx_hook(data->win, 2, 1L << 0, action_key, data);
 	mlx_hook(data->win, 33, 1L << 17, close_window, data);
-	//mlx_loop_hook(data->mlx, render_next_frame, data);
+	mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_loop(data->mlx);
 }
 
@@ -80,6 +80,11 @@ int			main(int argc, char **argv)
 
 	if (argc > 1 && ft_check_ext(argv[1], &data) == 1)
 	{
+		if (!(data.mlx = mlx_init()))
+		{
+			ft_putstr_fd("ERROR : CONNEXTION TO MLX FAILED!\n", 0);
+			return (0);
+		}
 		res = brain(argc, argv, &data);
 		if (res == 1)
 			loop_hook(&data);

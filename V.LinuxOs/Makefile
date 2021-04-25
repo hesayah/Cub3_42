@@ -24,8 +24,8 @@ SRCS =	libs/gnl/get_next_line_utils.c \
 		srcs/parsing/pars_three.c \
 		srcs/parsing/pars_map.c \
 		srcs/parsing/pars_player.c \
+		srcs/parsing/load_xpm.c \
 		srcs/sprite/sprite.c \
-		srcs/img/load_xpm.c \
 		srcs/move/move.c \
 		srcs/ray_casting/ray_casting.c \
 		srcs/drawing/drawing_one.c \

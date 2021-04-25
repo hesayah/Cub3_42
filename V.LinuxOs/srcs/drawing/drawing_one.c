@@ -27,7 +27,7 @@ unsigned long ft_rgb(int r, int g, int b)
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-static	void	texture_calc(int x, t_data *data)
+static	void	texture_calc(int x, int index, t_data *data)
 {	
 	if (data->cast.side == 0)
 		data->tex.wallx = data->cam.posy + data->cast.dist_ray
@@ -36,21 +36,21 @@ static	void	texture_calc(int x, t_data *data)
 		data->tex.wallx = data->cam.posx + data->cast.dist_ray
 		* data->cast.ray_x;
 	data->tex.wallx -= (int)data->tex.wallx;
-	data->tex.tex_x = (int)(data->tex.wallx * 1024);
+	data->tex.tex_x = (int)(data->tex.wallx * data->t[index].img_width);
    if (data->cast.side == 0 && data->cast.ray_x > 0)
-		data->tex.tex_x = 1024 - data->tex.tex_x - 1;
+		data->tex.tex_x = data->t[index].img_width - data->tex.tex_x - 1;
     if (data->cast.side == 1 && data->cast.ray_y < 0)
-		data->tex.tex_x = 1024 - data->tex.tex_x - 1;
-	data->tex.step = 1024 / (data->cast.wall + 1);
+		data->tex.tex_x = data->t[index].img_width - data->tex.tex_x - 1;
+	data->tex.step = data->t[index].img_height / (data->cast.wall + 1);
 	data->tex.tex_p = (data->cast.start - data->w_h / 2
 	+ data->cast.wall / 2) * data->tex.step;
 }
 
-void	        draw_c_wall(int x, int *txt, t_data *data)
+void	        draw_c_wall(int x, int index, t_data *data)
 {
 	int y;
 	y = 0;
-	texture_calc(x,data);
+	texture_calc(x, index, data);
 	while (y < data->w_h)
 	{
 		if (y < data->cast.start)
@@ -58,8 +58,8 @@ void	        draw_c_wall(int x, int *txt, t_data *data)
 		else if (y > data->cast.start && y < data->cast.end)
 		{
 			data->tex.tex_p += data->tex.step;
-			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;
-			my_mlx_pixel_put(x, y,  txt[(1024 * data->tex.tex_y) - data->tex.tex_x], data);
+			data->tex.tex_y = (int)(data->tex.tex_p) % data->t[index].img_width;
+			my_mlx_pixel_put(x, y,  data->t[index].addr[(data->t[index].img_height * data->tex.tex_y) - data->tex.tex_x], data);
 		}
 		else
 			my_mlx_pixel_put(x, y, data->tex.floor, data);

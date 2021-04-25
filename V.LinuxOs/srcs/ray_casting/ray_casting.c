@@ -88,16 +88,16 @@ void		wall(int x, t_data *data)
 	if (data->cast.side == 0)
 	{
 		if (data->cast.mapx - data->cam.posx  > 0)
-			draw_c_wall(x, data->tex.tex[2], data);
+			draw_c_wall(x, 2, data);
 		else
-			draw_c_wall(x, data->tex.tex[3], data);
+			draw_c_wall(x, 3, data);
 	}
 	else
 	{
 		if (data->cast.mapy - data->cam.posy > 0)
-			draw_c_wall(x, data->tex.tex[1], data);
+			draw_c_wall(x, 1, data);
 		else
-			draw_c_wall(x, data->tex.tex[0], data);
+			draw_c_wall(x, 0, data);
 	}
 }
 
