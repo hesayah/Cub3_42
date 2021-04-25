@@ -36,12 +36,12 @@ static	void	texture_calc(int x, int index, t_data *data)
 		data->tex.wallx = data->cam.posx + data->cast.dist_ray
 		* data->cast.ray_x;
 	data->tex.wallx -= (int)data->tex.wallx;
-	data->tex.tex_x = (int)(data->tex.wallx * data->t[index].img_width);
+	data->tex.tex_x = (int)(data->tex.wallx * 1024);
    if (data->cast.side == 0 && data->cast.ray_x > 0)
-		data->tex.tex_x = data->t[index].img_width - data->tex.tex_x - 1;
+		data->tex.tex_x = 1024 - data->tex.tex_x - 1;
     if (data->cast.side == 1 && data->cast.ray_y < 0)
-		data->tex.tex_x = data->t[index].img_width - data->tex.tex_x - 1;
-	data->tex.step = data->t[index].img_height / (data->cast.wall + 1);
+		data->tex.tex_x = 1024 - data->tex.tex_x - 1;
+	data->tex.step = 1024 / (data->cast.wall + 1);
 	data->tex.tex_p = (data->cast.start - data->w_h / 2
 	+ data->cast.wall / 2) * data->tex.step;
 }
@@ -50,16 +50,19 @@ void	        draw_c_wall(int x, int index, t_data *data)
 {
 	int y;
 	y = 0;
+
 	texture_calc(x, index, data);
 	while (y < data->w_h)
 	{
 		if (y < data->cast.start)
 			my_mlx_pixel_put(x, y, data->tex.ceiling, data);
-		else if (y > data->cast.start && y < data->cast.end)
+		else if (y + 1 > data->cast.start && y + 1 < data->cast.end)
 		{
 			data->tex.tex_p += data->tex.step;
-			data->tex.tex_y = (int)(data->tex.tex_p) % data->t[index].img_width;
-			my_mlx_pixel_put(x, y,  data->t[index].addr[(data->t[index].img_height * data->tex.tex_y) - data->tex.tex_x], data);
+			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;
+			//data->rgb.color = data->t[4].addr[data->t[4].img_width * data->srt.srt_y + data->srt.srt_x];
+			my_mlx_pixel_put(x, y,  data->t[index].addr[data->t[index].img_height * data->tex.tex_y + data->tex.tex_x], data);
+			//my_mlx_pixel_put(x, y,  0, data);
 		}
 		else
 			my_mlx_pixel_put(x, y, data->tex.floor, data);

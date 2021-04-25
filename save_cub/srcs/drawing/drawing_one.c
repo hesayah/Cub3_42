@@ -59,7 +59,8 @@ void	        draw_c_wall(int x, int *txt, t_data *data)
 		{
 			data->tex.tex_p += data->tex.step;
 			data->tex.tex_y = (int)(data->tex.tex_p) % 1024;
-			my_mlx_pixel_put(x, y,  txt[(1024 * data->tex.tex_y) - data->tex.tex_x], data);
+			//my_mlx_pixel_put(x, y,  txt[(1024 * data->tex.tex_y) - data->tex.tex_x], data);
+			my_mlx_pixel_put(x, y, 55555, data);
 		}
 		else
 			my_mlx_pixel_put(x, y, data->tex.floor, data);

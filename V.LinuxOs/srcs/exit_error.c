@@ -16,6 +16,8 @@ int clean_up(int code, t_data *data)
 {
     if (data->tab)
         ft_free(data->tab);
+    if (data->map)
+        ft_free(data->map);
     if (data->t[0].r_path)
         free(data->t[0].r_path);
     if (data->t[1].r_path)
@@ -26,8 +28,6 @@ int clean_up(int code, t_data *data)
         free(data->t[3].r_path);
     if (data->t[4].r_path)
         free(data->t[4].r_path);
-    if (data->map)
-        ft_free(data->map);;
     if (data->sprite)
         free(data->sprite);
     if (data->t[0].img)
@@ -42,6 +42,7 @@ int clean_up(int code, t_data *data)
         mlx_destroy_image(data->mlx, data->t[4].img);
     mlx_destroy_display(data->mlx);
     free(data->mlx);
+    init_data(data);
     exit(0);
     return (0);
 }

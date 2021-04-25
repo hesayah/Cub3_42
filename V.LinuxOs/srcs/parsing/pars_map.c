@@ -69,7 +69,6 @@ static	void	ft_get_map_2(char *str, int index, t_data *data)
 	int i;
 
 	i = 0;
-	data->maps.m_x++;
 	if (!(data->map[index] = (char*)malloc(sizeof(char) *
 	(data->maps.m_x + 1))))
 		return (exit_error(-1, data));
@@ -103,6 +102,7 @@ void			ft_get_map(int index, t_data *data)
 	if (!(data->map = (char**)malloc(sizeof(char*) *
 	(data->maps.m_y + 2))))
 		return (exit_error(-1, data));
+	data->maps.m_x++;
 	while (data->tab[index + i] && i < data->maps.m_y)
 	{
 		ft_get_map_2(data->tab[index + i], i, data);

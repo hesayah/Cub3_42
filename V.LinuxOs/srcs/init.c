@@ -40,6 +40,13 @@ void	init_data(t_data *data)
 	data->map = NULL;
 	data->tex.floor = -1;
 	data->tex.ceiling = -1;
+	data->tex.tex_y = 0;
+	data->tex.tex_x = 0;
+	data->tex.txt_w = 0;
+	data->tex.txt_h = 0;
+	data->tex.step = 0;
+	data->tex.tex_p = 0;
+	data->tex.wallx = 0;
 	data->maps.m_x = 0;
 	data->maps.m_y = 0;
 	init_two(data);

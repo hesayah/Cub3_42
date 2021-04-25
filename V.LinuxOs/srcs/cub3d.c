@@ -12,12 +12,42 @@
 
 #include "../cub3d.h"
 
+void    ft_debug(t_data *data)
+{
+	int i;
+	
+	i = 0;
+	/*while (data->tab[i])
+	{
+        printf("tab[%i] == [%s]\n", i, data->tab[i]);
+		i++;
+	}*/
+	/*printf("DANS debug  : \n");
+    printf(" R : w == %i && h == %i\n", data->w_w, data->w_h);
+    printf("path[0] == [%s]\n", data->tex.r_path[0]);
+	printf("path[1] == [%s]\n", data->tex.r_path[1]);
+	printf("path[2] == [%s]\n", data->tex.r_path[2]);
+	printf("path[3] == [%s]\n", data->tex.r_path[3]);
+	printf("path[4] == [%s]\n", data->tex.r_path[4]);
+	printf(" F && C : f == %lu && c == %lu\n", data->tex.floor, data->tex.ceiling);*/
+	i = 0;
+	while (data->map[i])
+	{
+		printf("map == [%s]\n", data->map[i]);
+		i++;
+	}
+	/*printf("\n ----------- \n");
+	printf("dir_eye == [%f]\n", data->cam.dir_eye);
+	printf("dir_x == [%f] && dir_y == [%f]\n", data->cam.dir_x, data->cam.dir_y);
+	printf("plane_x == [%f] && plane_y == [%f]\n", data->cam.plane_x, data->cam.plane_y);*/
+}
+
 int			close_window(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
+	ft_debug(data);
 	clean_up(2, data);
-	exit(0);
 	return (0);
 }
 
