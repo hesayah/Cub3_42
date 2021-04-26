@@ -60,7 +60,7 @@ void				draw_map(t_data *data)
 	{
 		data->maps.x = 1;
 		data->maps.px = 0;
-		while (data->maps.x < data->maps.map_w)
+		while (data->maps.px < data->maps.m_x)
 		{
 			if (data->maps.x % (int)data->maps.map_x == 0)
 			{

@@ -46,9 +46,11 @@ static	void		draw_map_two(t_data *data)
 	if (data->map[data->maps.py][data->maps.px]
 	&& data->map[data->maps.py][data->maps.px] == '1')
 		my_mlx_pixel_put(data->maps.x, data->maps.y, 0x2F4F4F, data);
-	else if (data->map[data->maps.py][data->maps.px] == '2')
+	else if (data->map[data->maps.py][data->maps.px]
+	&& data->map[data->maps.py][data->maps.px] == '2')
 		my_mlx_pixel_put(data->maps.x, data->maps.y, 0xD3D3D3, data);
-	else if (data->map[data->maps.py][data->maps.px] == '0')
+	else if (data->map[data->maps.py][data->maps.px]
+	&& data->map[data->maps.py][data->maps.px] == '0')
 		my_mlx_pixel_put(data->maps.x, data->maps.y, 0x99D8D89, data);
 }
 
@@ -60,7 +62,7 @@ void				draw_map(t_data *data)
 	{
 		data->maps.x = 1;
 		data->maps.px = 0;
-		while (data->maps.x < data->maps.map_w)
+		while (data->maps.px < data->maps.m_x)
 		{
 			if (data->maps.x % (int)data->maps.map_x == 0)
 			{
