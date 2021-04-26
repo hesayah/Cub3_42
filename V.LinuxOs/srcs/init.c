@@ -35,8 +35,6 @@ void			init_data(t_data *data)
 {
 	data->w_h = -1;
 	data->w_w = -1;
-	data->w_max = 0;
-	data->h_max = 0;
 	data->err = 0;
 	data->tab = NULL;
 	data->map = NULL;

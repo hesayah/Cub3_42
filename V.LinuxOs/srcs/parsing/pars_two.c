@@ -19,7 +19,7 @@ static void	check_value(t_data *data)
 	{
 		data->w_w = data->w_max;
 		data->w_h = data->h_max;
-		exit_error(6, data);
+		ft_putstr_fd("ERROR : RESIZE WIN ==> OK\n", 0);
 	}
 	if (data->t[0].r_path == NULL || data->t[1].r_path == NULL
 		|| data->t[2].r_path == NULL || data->t[3].r_path == NULL
