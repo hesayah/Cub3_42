@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:07:39 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/20 02:50:50 by hedi             ###   ########.fr       */
+/*   Updated: 2021/05/01 02:29:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 int		ft_check_arg(int argc, char *str)
 {
-	if (argc > 3)
-	{
-		ft_putstr_fd("ERROR : TOO MANY ARGUMENTS\n", 0);
-		exit(0);
-	}
 	if (ft_strncmp(str, "--save", 7) == 0)
 		return (1);
 	else
-	{
 		ft_putstr_fd("ERROR : BAD ARGUMENT\n", 0);
-		exit(0);
-	}
+	if (argc > 3)
+		ft_putstr_fd("ERROR : TOO MANY ARGUMENTS\n", 0);
 	return (0);
 }
 

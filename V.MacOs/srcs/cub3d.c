@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hedi <hedi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:00:52 by hesayah           #+#    #+#             */
-/*   Updated: 2021/04/26 00:27:52 by hedi             ###   ########.fr       */
+/*   Updated: 2021/05/01 02:27:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,18 @@ static int	ft_check_ext(char *str, t_data *data)
 
 int			brain(int argc, char **argv, t_data *data)
 {
+	int res;
+
+	res = -1;
 	init_data(data);
 	pars_brain(argv[1], data);
 	if (!(load_xpm(data)))
 		return (clean_up(data));
-	if (argv[2] && ft_check_arg(argc, argv[2]) == 1)
+	if (argv[2])
+		res = ft_check_arg(argc, argv[2]);
+	if (!res)
+		return (clean_up(data));
+	if (res == 1)
 		return (2);
 	return (1);
 }
